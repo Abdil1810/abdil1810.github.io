@@ -1,1 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login Gratis - Iklan</title>
+</head>
+<body style="text-align:center; font-family:sans-serif;">
+  <h2>Nonton iklan dulu untuk login gratis</h2>
 
+  <!-- Nanti di sini bisa ditaruh script iklan Adsterra -->
+  <iframe src="https://example.com" width="300" height="250"></iframe>
+
+  <p id="countdown">Tunggu 10 detik...</p>
+  <button id="nextBtn" onclick="location.href='mksport://lanjut'" style="display:none;">Lanjutkan</button>
+
+  <script>
+    let counter = 10;
+    const countdown = document.getElementById("countdown");
+    const nextBtn = document.getElementById("nextBtn");
+    const timer = setInterval(() => {
+      counter--;
+      countdown.textContent = "Tunggu " + counter + " detik...";
+      if (counter <= 0) {
+        clearInterval(timer);
+        countdown.textContent = "Waktu selesai";
+        nextBtn.style.display = "inline-block";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
