@@ -40,9 +40,10 @@
 <body>
   <h2>Tunggu Iklan Sebentar...</h2>
 
-  <!-- DETEKSI BLOKER IKLAN -->
+  <!-- Deteksi Blokir Iklan -->
   <div class="adsbox" id="ad-test"></div>
 
+  <!-- Iklan -->
   <div class="adbox">
     <script type='text/javascript' src='//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js'></script>
   </div>
@@ -56,7 +57,7 @@
   <button id="lanjut" onclick="lanjut()">Lanjutkan</button>
 
   <script>
-    // DETEKSI ADBLOCK
+    // Deteksi AdBlock
     window.addEventListener('load', function () {
       setTimeout(() => {
         const bait = document.getElementById("ad-test");
@@ -66,7 +67,7 @@
       }, 1000);
     });
 
-    // TIMER & LANJUT
+    // Timer
     let countdown = 15;
     const timerEl = document.getElementById("timer");
     const lanjutBtn = document.getElementById("lanjut");
