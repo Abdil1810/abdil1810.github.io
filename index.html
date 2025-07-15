@@ -29,10 +29,19 @@
     .adbox {
       margin: 20px auto;
     }
+    .adsbox {
+      height: 1px;
+      width: 1px;
+      position: absolute;
+      left: -9999px;
+    }
   </style>
 </head>
 <body>
   <h2>Tunggu Iklan Sebentar...</h2>
+
+  <!-- DETEKSI BLOKER IKLAN -->
+  <div class="adsbox" id="ad-test"></div>
 
   <div class="adbox">
     <script type='text/javascript' src='//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js'></script>
@@ -47,6 +56,17 @@
   <button id="lanjut" onclick="lanjut()">Lanjutkan</button>
 
   <script>
+    // DETEKSI ADBLOCK
+    window.addEventListener('load', function () {
+      setTimeout(() => {
+        const bait = document.getElementById("ad-test");
+        if (!bait || bait.offsetHeight === 0) {
+          location.href = "mksport://blocker";
+        }
+      }, 1000);
+    });
+
+    // TIMER & LANJUT
     let countdown = 15;
     const timerEl = document.getElementById("timer");
     const lanjutBtn = document.getElementById("lanjut");
