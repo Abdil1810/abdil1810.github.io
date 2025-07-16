@@ -25,6 +25,7 @@
       font-size: 20px;
       border-radius: 10px;
       margin-top: 20px;
+      cursor: pointer;
     }
     .adbox {
       margin: 20px auto;
@@ -38,17 +39,17 @@
   </style>
 </head>
 <body>
-  <h2>Tunggu Iklan Sebentar...</h2>
+  <h2>🎥 Tonton Iklan Untuk Masuk</h2>
 
-  <!-- DETEKSI BLOKER IKLAN -->
+  <!-- DETEKSI ADBLOCK -->
   <div class="adsbox" id="ad-test"></div>
 
-  <!-- Iklan -->
+  <!-- ADS CONTAINER -->
   <div class="adbox">
-    <script type='text/javascript' src='//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js'></script>
+    <script type="text/javascript" src="//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js"></script>
   </div>
   <div class="adbox">
-    <script async="async" data-cfasync="false" src='//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js'></script>
+    <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
     <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
   </div>
 
@@ -56,17 +57,18 @@
   <button id="lanjut" onclick="lanjut()">Lanjutkan</button>
 
   <script>
-    // Deteksi AdBlock
+    // Blokir jika AdBlock aktif
     window.addEventListener('load', () => {
       setTimeout(() => {
         const bait = document.getElementById("ad-test");
         if (!bait || bait.offsetHeight === 0) {
-          location.href = "mksport://blocker";
+          // Redirect ke skema app: AdBlock terdeteksi
+          window.location.href = "mksport://blocker";
         }
-      }, 1000);
+      }, 800); // Deteksi cepat, jangan terlalu lama
     });
 
-    // Timer
+    // Timer delay
     let countdown = 15;
     const timerEl = document.getElementById("timer");
     const lanjutBtn = document.getElementById("lanjut");
@@ -82,7 +84,8 @@
     }, 1000);
 
     function lanjut() {
-      location.href = "mksport://lanjut?adsok=true";
+      // Lanjutkan ke skema app hanya setelah timer selesai
+      window.location.href = "mksport://lanjut?adsok=true";
     }
   </script>
 </body>
