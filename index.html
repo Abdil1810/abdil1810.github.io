@@ -45,7 +45,7 @@
   <div class="adsbox" id="ad-test"></div>
 
   <!-- ADS CONTAINER -->
-  <div class="adbox">
+  <div class="adbox" id="ad1">
     <script type="text/javascript" src="//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js"></script>
   </div>
   <div class="adbox">
@@ -57,34 +57,50 @@
   <button id="lanjut" onclick="lanjut()">Lanjutkan</button>
 
   <script>
-    // Blokir jika AdBlock aktif
+    let countdown = 15;
+    const timerEl = document.getElementById("timer");
+    const lanjutBtn = document.getElementById("lanjut");
+    let adsVisible = false;
+
+    // Cek AdBlock
     window.addEventListener('load', () => {
       setTimeout(() => {
         const bait = document.getElementById("ad-test");
         if (!bait || bait.offsetHeight === 0) {
-          // Redirect ke skema app: AdBlock terdeteksi
           window.location.href = "mksport://blocker";
         }
-      }, 800); // Deteksi cepat, jangan terlalu lama
+      }, 800);
     });
 
-    // Timer delay
-    let countdown = 15;
-    const timerEl = document.getElementById("timer");
-    const lanjutBtn = document.getElementById("lanjut");
+    // Cek iklan benar-benar muncul
+    function checkAdsVisible() {
+      const ad = document.querySelector("#container-d483e7bbc26ea2bdda8ef6a24ccadff6");
+      if (ad && ad.offsetHeight > 50 && ad.offsetWidth > 50) {
+        adsVisible = true;
+      }
+    }
 
     const interval = setInterval(() => {
+      checkAdsVisible();
       countdown--;
       timerEl.textContent = countdown;
+
       if (countdown <= 0) {
         clearInterval(interval);
-        timerEl.style.display = "none";
-        lanjutBtn.style.display = "inline-block";
+        if (adsVisible) {
+          timerEl.style.display = "none";
+          lanjutBtn.style.display = "inline-block";
+        } else {
+          timerEl.innerHTML = "❌ Iklan gagal dimuat. Nonaktifkan AdBlock dan refresh halaman.";
+        }
       }
     }, 1000);
 
     function lanjut() {
-      // Lanjutkan ke skema app hanya setelah timer selesai
+      if (!adsVisible) {
+        alert("❌ Kamu harus menonton iklan dulu.");
+        return;
+      }
       window.location.href = "mksport://lanjut?adsok=true";
     }
   </script>
