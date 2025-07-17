@@ -2,65 +2,50 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Iklan Gratis</title>
+  <title>Tonton Iklan Dulu</title>
   <style>
     body {
-      text-align: center;
       font-family: sans-serif;
-      background: #000;
-      color: #fff;
+      text-align: center;
+      background-color: #000;
+      color: white;
       margin: 0;
       padding: 0;
     }
-    #timer {
-      font-size: 26px;
-      margin: 20px 0;
-    }
-#lanjut {
-  display: none;
-  padding: 15px 30px;
-  background: linear-gradient(135deg, #ff0000, #000000);
-  border: none;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 12px;
-  margin-top: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
 
-#lanjut:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 15px rgba(255, 0, 0, 0.6);
-}
-    .adbox {
-      margin: 20px auto;
+    iframe {
+      width: 100%;
+      height: 90px;
+      border: none;
+      margin-top: 50px;
     }
-    .adsbox {
-      height: 1px;
-      width: 1px;
-      position: absolute;
-      left: -9999px;
+
+    #lanjut {
+      display: none;
+      margin-top: 50px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #ff0000, #000000);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+      transition: 0.3s;
+    }
+
+    #lanjut:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
-  <h2>🎥 Tonton Iklan Untuk Masuk</h2>
 
-  <!-- DETEKSI ADBLOCK -->
-  <div class="adsbox" id="ad-test"></div>
+  <h2>Tunggu sebentar ya...</h2>
 
-  <!-- ADS CONTAINER -->
-  <div class="adbox" id="ad1">
-    <script type="text/javascript" src="//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js"></script>
-  </div>
-  
-  <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
-<div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-  
-<div class="adbox">
+  <!-- ADS SCRIPT -->
   <script type="text/javascript">
     atOptions = {
       'key' : 'b1797000fb9be915983ab2fc8040ecb4',
@@ -71,58 +56,20 @@
     };
   </script>
   <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
-</div>
-  
-  <div id="timer">10</div>
-  <button id="Selamat Menonton" onclick="lanjut()">Lanjutkan</button>
+
+  <!-- LANJUT BUTTON -->
+  <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
   <script>
-    let countdown = 10;
-    const timerEl = document.getElementById("timer");
-    const lanjutBtn = document.getElementById("lanjut");
-    let adsVisible = false;
-
-    // Cek AdBlock
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const bait = document.getElementById("ad-test");
-        if (!bait || bait.offsetHeight === 0) {
-          window.location.href = "mksport://blocker";
-        }
-      }, 800);
-    });
-
-    // Cek iklan benar-benar muncul
-    function checkAdsVisible() {
-      const ad = document.querySelector("#container-d483e7bbc26ea2bdda8ef6a24ccadff6");
-      if (ad && ad.offsetHeight > 50 && ad.offsetWidth > 50) {
-        adsVisible = true;
-      }
-    }
-
-    const interval = setInterval(() => {
-      checkAdsVisible();
-      countdown--;
-      timerEl.textContent = countdown;
-
-      if (countdown <= 0) {
-        clearInterval(interval);
-        if (adsVisible) {
-          timerEl.style.display = "none";
-          lanjutBtn.style.display = "inline-block";
-        } else {
-          timerEl.innerHTML = "❌ Iklan gagal dimuat. Nonaktifkan AdBlock dan refresh halaman.";
-        }
-      }
-    }, 1000);
+    // Tombol akan muncul setelah 10 detik (misalnya setelah iklan ditonton)
+    setTimeout(function() {
+      document.getElementById("lanjut").style.display = "inline-block";
+    }, 10000); // 10 detik
 
     function lanjut() {
-      if (!adsVisible) {
-        alert("❌ Kamu harus menonton iklan dulu.");
-        return;
-      }
       window.location.href = "mksport://lanjut?adsok=true";
     }
   </script>
+
 </body>
 </html>
