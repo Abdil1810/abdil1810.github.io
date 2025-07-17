@@ -16,17 +16,25 @@
       font-size: 26px;
       margin: 20px 0;
     }
-    #lanjut {
-      display: none;
-      padding: 15px 30px;
-      background: limegreen;
-      border: none;
-      color: white;
-      font-size: 30px;
-      border-radius: 30px;
-      margin-top: 30px;
-      cursor: pointer;
-    }
+#lanjut {
+  display: none;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, #ff0000, #000000);
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#lanjut:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 0, 0, 0.6);
+}
     .adbox {
       margin: 20px auto;
     }
