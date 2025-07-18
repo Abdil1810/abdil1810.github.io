@@ -1,99 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Iklan Muncul Semua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
-      padding: 0;
       background: #000;
       color: #fff;
       font-family: sans-serif;
-    }
-    .ad-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
+      text-align: center;
+      margin: 0;
       padding: 10px;
     }
-    .ad-slot {
-      width: auto;
+    .ad-container {
+      margin: 10px auto;
       max-width: 100%;
+    }
+    #lanjut {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      display: none;
     }
   </style>
 </head>
 <body>
+  <h3>Tunggu sebentar ya, sedang memuat iklan...</h3>
 
-  <div class="ad-container">
-    <!-- Iklan 728x90 -->
-    <div class="ad-slot">
-      <script type="text/javascript">
-        atOptions = {
-          'key': 'b1797000fb9be915983ab2fc8040ecb4',
-          'format': 'iframe',
-          'height': 90,
-          'width': 728,
-          'params': {}
-        };
-      </script>
-      <script src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
-    </div>
-
-    <!-- Iklan 320x50 -->
-    <div class="ad-slot">
-      <script type="text/javascript">
-        atOptions = {
-          'key': 'd3ef5858953dc899c272e4b1bccad01e',
-          'format': 'iframe',
-          'height': 50,
-          'width': 320,
-          'params': {}
-        };
-      </script>
-      <script src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
-    </div>
-
-    <!-- Iklan native script -->
-    <div class="ad-slot">
-      <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
-      <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-    </div>
-
-    <!-- Iklan 160x300 -->
-    <div class="ad-slot">
-      <script type="text/javascript">
-        atOptions = {
-          'key': 'b53e8b1e80d6e08f0cadfabcae10313d',
-          'format': 'iframe',
-          'height': 300,
-          'width': 160,
-          'params': {}
-        };
-      </script>
-      <script src="//www.highperformanceformat.com/b53e8b1e80d6e08f0cadfabcae10313d/invoke.js"></script>
-    </div>
-
-    <!-- Iklan 160x600 -->
-    <div class="ad-slot">
-      <script type="text/javascript">
-        atOptions = {
-          'key': '9b27368b06b44b0833020076eb419df1',
-          'format': 'iframe',
-          'height': 600,
-          'width': 160,
-          'params': {}
-        };
-      </script>
-      <script src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
-    </div>
-
-    <!-- Iklan dari profitableratecpm -->
-    <div class="ad-slot">
-      <script src='//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js'></script>
-    </div>
+  <div class="ad-container" id="ad1">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'b1797000fb9be915983ab2fc8040ecb4',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
   </div>
 
+  <div class="ad-container" id="ad2">
+    <script async="async" data-cfasync="false" src="//pl27167535.profitableratecpm.com/a23628848e329cb02d62c84da851d39e.js"></script>
+  </div>
+
+  <div class="ad-container" id="ad3">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'd3ef5858953dc899c272e4b1bccad01e',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
+  </div>
+
+  <div class="ad-container" id="ad4">
+    <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
+    <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
+  </div>
+
+  <div class="ad-container" id="ad5">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'b53e8b1e80d6e08f0cadfabcae10313d',
+        'format' : 'iframe',
+        'height' : 300,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/b53e8b1e80d6e08f0cadfabcae10313d/invoke.js"></script>
+  </div>
+
+  <div class="ad-container" id="ad6">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '9b27368b06b44b0833020076eb419df1',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
+  </div>
+
+  <button id="lanjut" onclick="window.Android.adsFinished()">Lanjutkan</button>
+
+  <script>
+    // Tunggu minimal 8 detik dan tampilkan tombol
+    setTimeout(() => {
+      document.getElementById('lanjut').style.display = 'inline-block';
+    }, 8000);
+  </script>
 </body>
 </html>
