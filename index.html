@@ -14,7 +14,7 @@
     }
 
     h2 {
-      margin-top: 100px;
+      margin-top: 60px;
     }
 
     #lanjut {
@@ -37,41 +37,82 @@
       transform: scale(1.05);
     }
 
-    #iklan {
-      margin-top: 60px;
+    .iklan {
+      margin: 20px auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- Teks awal -->
   <h2 id="pesan">Tunggu sebentar ya...</h2>
 
-  <!-- Tempat Iklan -->
-  <div id="iklan"></div>
+  <!-- 4 Wadah Iklan -->
+  <div id="iklan1" class="iklan"></div>
+  <div id="iklan2" class="iklan"></div>
+  <div id="iklan3" class="iklan"></div>
+  <div id="iklan4" class="iklan"></div>
 
   <!-- Tombol Lanjut -->
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
-  <!-- Script Iklan (SATU saja) -->
-  <script type="text/javascript">
+  <!-- Iklan 1 -->
+  <script>
     atOptions = {
-      'key' : 'b1797000fb9be915983ab2fc8040ecb4',
-      'format' : 'iframe',
-      'height' : 90,
-      'width' : 728,
-      'params' : {},
-      'container': 'iklan', // <- ini agar iklan muncul di div #iklan
+      'key': 'KEY_PERTAMA',
+      'format': 'iframe',
+      'height': 90,
+      'width': 728,
+      'params': {},
+      'container': 'iklan1'
     };
   </script>
-  <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
+  <script src="//www.highperformanceformat.com/KEY_PERTAMA/invoke.js"></script>
+
+  <!-- Iklan 2 -->
+  <script>
+    atOptions = {
+      'key': 'KEY_KEDUA',
+      'format': 'iframe',
+      'height': 250,
+      'width': 300,
+      'params': {},
+      'container': 'iklan2'
+    };
+  </script>
+  <script src="//www.highperformanceformat.com/KEY_KEDUA/invoke.js"></script>
+
+  <!-- Iklan 3 -->
+  <script>
+    atOptions = {
+      'key': 'KEY_KETIGA',
+      'format': 'iframe',
+      'height': 50,
+      'width': 320,
+      'params': {},
+      'container': 'iklan3'
+    };
+  </script>
+  <script src="//www.highperformanceformat.com/KEY_KETIGA/invoke.js"></script>
+
+  <!-- Iklan 4 -->
+  <script>
+    atOptions = {
+      'key': 'KEY_KEEMPAT',
+      'format': 'iframe',
+      'height': 600,
+      'width': 160,
+      'params': {},
+      'container': 'iklan4'
+    };
+  </script>
+  <script src="//www.highperformanceformat.com/KEY_KEEMPAT/invoke.js"></script>
 
   <!-- Logika Tampilkan Tombol -->
   <script>
-    setTimeout(function() {
+    setTimeout(function () {
       document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
       document.getElementById("lanjut").style.display = "inline-block";
-    }, 5000); // 5 detik
+    }, 5000);
 
     function lanjut() {
       window.location.href = "mksport://lanjut?adsok=true";
