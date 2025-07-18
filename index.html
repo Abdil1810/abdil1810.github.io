@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Tonton Iklan Dulu</title>
   <style>
     body {
-      background: #000;
-      color: #fff;
       font-family: sans-serif;
       text-align: center;
+      background-color: #000;
+      color: white;
       margin: 0;
-      padding: 10px;
+      padding: 0;
     }
-    .ad-container {
-      margin: 10px auto;
-      max-width: 100%;
+
+    h2 {
+      margin-top: 60px;
     }
+
     #lanjut {
-      margin-top: 20px;
+      display: none;
+      margin-top: 10px;
+      margin-bottom: 30px;
       padding: 15px 30px;
       font-size: 18px;
-      background-color: #28a745;
+      font-weight: bold;
       color: #fff;
+      background: linear-gradient(135deg, #ff0000, #000000);
       border: none;
       border-radius: 10px;
-      display: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+      transition: 0.3s;
+    }
+
+    #lanjut:hover {
+      opacity: 0.85;
+      transform: scale(1.05);
+    }
+
+    .iklan {
+      margin: 20px auto;
+      display: block;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h3>Tunggu sebentar ya, sedang memuat iklan...</h3>
+  <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
 
-  <div class="ad-container" id="ad1">
+  <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
+<div class="ad-container" id="ad1">
     <script type="text/javascript">
       atOptions = {
         'key' : 'b1797000fb9be915983ab2fc8040ecb4',
@@ -90,14 +109,17 @@
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
   </div>
-
-  <button id="lanjut" onclick="window.Android.adsFinished()">Lanjutkan</button>
-
+  
+  <!-- Tampilkan tombol setelah 5 detik -->
   <script>
-    // Tunggu minimal 8 detik dan tampilkan tombol
-    setTimeout(() => {
-      document.getElementById('lanjut').style.display = 'inline-block';
-    }, 8000);
+    setTimeout(function () {
+      document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
+      document.getElementById("lanjut").style.display = "inline-block";
+    }, 5000);
+
+    function lanjut() {
+      window.location.href = "mksport://lanjut?adsok=true";
+    }
   </script>
 </body>
 </html>
