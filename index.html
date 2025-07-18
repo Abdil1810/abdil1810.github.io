@@ -37,10 +37,7 @@
       transform: scale(1.05);
     }
 
-    iframe {
-      width: 100%;
-      height: 90px;
-      border: none;
+    #iklan {
       margin-top: 60px;
     }
   </style>
@@ -50,55 +47,33 @@
   <!-- Teks awal -->
   <h2 id="pesan">Tunggu sebentar ya...</h2>
 
-  <!-- Tombol yang akan muncul -->
+  <!-- Tempat Iklan -->
+  <div id="iklan"></div>
+
+  <!-- Tombol Lanjut -->
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
-  <!-- Script Iklan -->
+  <!-- Script Iklan (SATU saja) -->
   <script type="text/javascript">
     atOptions = {
       'key' : 'b1797000fb9be915983ab2fc8040ecb4',
       'format' : 'iframe',
       'height' : 90,
       'width' : 728,
-      'params' : {}
+      'params' : {},
+      'container': 'iklan', // <- ini agar iklan muncul di div #iklan
     };
   </script>
   <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'd3ef5858953dc899c272e4b1bccad01e',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
-  <!-- Logika Ganti Teks + Munculkan Tombol -->
+
+  <!-- Logika Tampilkan Tombol -->
   <script>
-
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'b1797000fb9be915983ab2fc8040ecb4',
-		'format' : 'iframe',
-		'height' : 90,
-		'width' : 728,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
-
-<script type='text/javascript' src='//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js'></script>
-
-
-    
     setTimeout(function() {
       document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
       document.getElementById("lanjut").style.display = "inline-block";
     }, 5000); // 5 detik
 
     function lanjut() {
-      // Ganti URL tujuan di sini:
       window.location.href = "mksport://lanjut?adsok=true";
     }
   </script>
