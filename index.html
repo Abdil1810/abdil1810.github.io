@@ -40,87 +40,53 @@
 
     .iklan {
       margin: 20px auto;
-      display: block;
       text-align: center;
+      min-height: 50px;
     }
   </style>
 </head>
 <body>
-  <h2 id="pesan">🤗 Tanpa Iklan Hanya 10K 🤗</h2>
+  <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
+
+  <!-- SUSUNAN IKLAN -->
+  <div id="iklan4" class="iklan"></div> <!-- ff6 -->
+  <div id="iklan3" class="iklan"></div> <!-- 4b -->
+  <div id="iklan2" class="iklan"></div> <!-- 1e -->
+  <div id="iklan1" class="iklan"></div> <!-- b179 -->
 
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
-<!-- Iklan 4 (Native Bar): dari profitableratecpm.com -->
-  <div id="iklan4" class="iklan">
-    <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-  </div>
-  <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
-
-  <!-- Iklan 1: 728x90 -->
-  <div id="iklan1" class="iklan"></div>
   <script>
-    (function() {
-      var atOptions = {
-        'key': 'b1797000fb9be915983ab2fc8040ecb4',
-        'format': 'iframe',
-        'height': 90,
-        'width': 728,
-        'params': {},
-        'container': 'iklan1'
-      };
-      var script = document.createElement('script');
-      script.src = "//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js";
-      document.body.appendChild(script);
-    })();
-  </script>
-
-  <!-- Iklan 2: 300x250 -->
-  <div id="iklan2" class="iklan"></div>
-  <script>
-    (function() {
-      var atOptions = {
-        'key': 'd3ef5858953dc899c272e4b1bccad01e',
-        'format': 'iframe',
-        'height': 250,
-        'width': 300,
-        'params': {},
-        'container': 'iklan2'
-      };
-      var script = document.createElement('script');
-      script.src = "//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js";
-      document.body.appendChild(script);
-    })();
-  </script>
-
-  <!-- Iklan 3: 320x50 -->
-  <div id="iklan3" class="iklan"></div>
-  <script>
-    (function() {
-      var atOptions = {
-        'key': 'a23628848e329cb02d62c84da851d39e',
-        'format': 'iframe',
-        'height': 50,
-        'width': 320,
-        'params': {},
-        'container': 'iklan3'
-      };
-      var script = document.createElement('script');
-      script.src = "//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js";
-      document.body.appendChild(script);
-    })();
-  </script>
-
-  
-  <!-- Tampilkan tombol setelah 5 detik -->
-  <script>
-    setTimeout(function () {
-      document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
-      document.getElementById("lanjut").style.display = "inline-block";
-    }, 5000);
-
     function lanjut() {
       window.location.href = "mksport://lanjut?adsok=true";
     }
+
+    window.onload = function () {
+      setTimeout(function () {
+        document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
+        document.getElementById("lanjut").style.display = "inline-block";
+      }, 5000);
+
+      // Iklan 4 - ff6
+      var s4 = document.createElement('script');
+      s4.src = "//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js";
+      document.body.appendChild(s4);
+
+      // Iklan 3 - 4b
+      var s3 = document.createElement('script');
+      s3.src = "//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js";
+      document.body.appendChild(s3);
+
+      // Iklan 2 - 1e
+      var s2 = document.createElement('script');
+      s2.src = "//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js";
+      document.body.appendChild(s2);
+
+      // Iklan 1 - b179
+      var s1 = document.createElement('script');
+      s1.src = "//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js";
+      document.body.appendChild(s1);
+    };
   </script>
 </body>
 </html>
