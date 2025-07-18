@@ -1,131 +1,97 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Tonton Iklan Dulu</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      background-color: #000;
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        color: #fff;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .ad-container {
+        width: 100%;
+        max-width: 728px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
 
-    h2 {
-      margin-top: 60px;
-    }
+    <!-- Iklan 728x90 -->
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'b1797000fb9be915983ab2fc8040ecb4',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
+    </div>
 
-    #lanjut {
-      display: none;
-      margin-top: 10px;
-      margin-bottom: 30px;
-      padding: 15px 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(135deg, #ff0000, #000000);
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-      transition: 0.3s;
-    }
+    <!-- Iklan JS file -->
+    <div class="ad-container">
+      <script type='text/javascript' src='//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js'></script>
+    </div>
 
-    #lanjut:hover {
-      opacity: 0.85;
-      transform: scale(1.05);
-    }
+    <!-- Iklan 320x50 -->
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'd3ef5858953dc899c272e4b1bccad01e',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
+    </div>
 
-    .iklan {
-      margin: 20px auto;
-      display: block;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗</h2>
+    <!-- Iklan native -->
+    <div class="ad-container">
+      <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
+      <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
+    </div>
 
-  <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
+    <!-- Iklan 160x300 -->
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'b53e8b1e80d6e08f0cadfabcae10313d',
+          'format' : 'iframe',
+          'height' : 300,
+          'width' : 160,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/b53e8b1e80d6e08f0cadfabcae10313d/invoke.js"></script>
+    </div>
 
-  <!-- Iklan 1: 728x90 -->
-  <div id="iklan1" class="iklan"></div>
-  <!-- Iklan 2: 300x250 -->
-  <div id="iklan2" class="iklan"></div>
-  <!-- Iklan 3: 320x50 -->
-  <div id="iklan3" class="iklan"></div>
-  <!-- Iklan 4 (Native): -->
-  <div id="iklan4" class="iklan">
-    <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-  </div>
+    <!-- Iklan 160x600 -->
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '9b27368b06b44b0833020076eb419df1',
+          'format' : 'iframe',
+          'height' : 600,
+          'width' : 160,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
+    </div>
 
-  <!-- Script Iklan -->
-  <script>
-    // Iklan 1 - HighPerformance 728x90
-    (function() {
-      var atOptions = {
-        'key': 'b1797000fb9be915983ab2fc8040ecb4',
-        'format': 'iframe',
-        'height': 90,
-        'width': 728,
-        'params': {},
-        'container': 'iklan1'
-      };
-      var script = document.createElement('script');
-      script.src = "//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js";
-      document.body.appendChild(script);
-    })();
-
-    // Iklan 2 - HighPerformance 300x250
-    (function() {
-      var atOptions = {
-        'key': 'd3ef5858953dc899c272e4b1bccad01e',
-        'format': 'iframe',
-        'height': 250,
-        'width': 300,
-        'params': {},
-        'container': 'iklan2'
-      };
-      var script = document.createElement('script');
-      script.src = "//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js";
-      document.body.appendChild(script);
-    })();
-
-    // Iklan 3 - Profitablerate 320x50
-    (function() {
-      var atOptions = {
-        'key': 'a23628848e329cb02d62c84da851d39e',
-        'format': 'iframe',
-        'height': 50,
-        'width': 320,
-        'params': {},
-        'container': 'iklan3'
-      };
-      var script = document.createElement('script');
-      script.src = "//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js";
-      document.body.appendChild(script);
-    })();
-
-    // Iklan 4 - Native
-    (function() {
-      var script = document.createElement('script');
-      script.async = true;
-      script.setAttribute('data-cfasync', 'false');
-      script.src = "//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js";
-      document.body.appendChild(script);
-    })();
-
-    // Tampilkan tombol setelah 5 detik
-    setTimeout(function () {
-      document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
-      document.getElementById("lanjut").style.display = "inline-block";
-    }, 5000);
-
-    function lanjut() {
-      window.location.href = "mksport://lanjut?adsok=true";
-    }
-  </script>
-</body>
+  </body>
 </html>
