@@ -12,11 +12,9 @@
       margin: 0;
       padding: 0;
     }
-
     h2 {
       margin-top: 60px;
     }
-
     #lanjut {
       display: none;
       margin-top: 10px;
@@ -32,12 +30,10 @@
       box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
       transition: 0.3s;
     }
-
     #lanjut:hover {
       opacity: 0.85;
       transform: scale(1.05);
     }
-
     .iklan {
       margin: 20px auto;
     }
@@ -47,16 +43,14 @@
 
   <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
 
-  <!-- Tombol di atas -->
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
-  <!-- 4 Wadah Iklan -->
   <div id="iklan1" class="iklan"></div>
   <div id="iklan2" class="iklan"></div>
   <div id="iklan3" class="iklan"></div>
   <div id="iklan4" class="iklan"></div>
 
-  <!-- Iklan 1: 728x90 -->
+  <!-- IKLAN 1 -->
   <script>
     atOptions = {
       'key': 'b1797000fb9be915983ab2fc8040ecb4',
@@ -69,7 +63,7 @@
   </script>
   <script src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
 
-  <!-- Iklan 2: 300x250 -->
+  <!-- IKLAN 2 -->
   <script>
     atOptions = {
       'key': 'd3ef5858953dc899c272e4b1bccad01e',
@@ -82,7 +76,7 @@
   </script>
   <script src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
 
-  <!-- Iklan 3: 320x50 -->
+  <!-- IKLAN 3 -->
   <script>
     atOptions = {
       'key': 'a23628848e329cb02d62c84da851d39e',
@@ -95,7 +89,7 @@
   </script>
   <script src="//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js"></script>
 
-  <!-- Iklan 4: 160x600 -->
+  <!-- IKLAN 4 -->
   <script>
     atOptions = {
       'key': 'a123456789examplekey456789000',
@@ -108,17 +102,39 @@
   </script>
   <script src="//www.highperformanceformat.com/a123456789examplekey456789000/invoke.js"></script>
 
-  <!-- Logika tampilkan tombol -->
+  <!-- LOGIKA TOMBOL + COUNTDOWN + VALIDASI -->
   <script>
-    setTimeout(function () {
-      document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
-      document.getElementById("lanjut").style.display = "inline-block";
-    }, 5000);
+    let countdown = 15;
+    const pesan = document.getElementById("pesan");
+    const lanjutBtn = document.getElementById("lanjut");
+
+    const interval = setInterval(() => {
+      pesan.innerText = `Menunggu iklan... (${countdown})`;
+      countdown--;
+      if (countdown < 0) {
+        clearInterval(interval);
+
+        // Validasi: cek apakah iframe iklan ada yg berhasil dimuat
+        const iframes = document.querySelectorAll("iframe");
+        let tampil = false;
+        iframes.forEach(iframe => {
+          if (iframe.offsetHeight > 0 && iframe.offsetWidth > 0) {
+            tampil = true;
+          }
+        });
+
+        if (tampil) {
+          pesan.innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
+          lanjutBtn.style.display = "inline-block";
+        } else {
+          pesan.innerText = "Iklan gagal dimuat. Harap nonaktifkan AdBlock!";
+        }
+      }
+    }, 1000);
 
     function lanjut() {
       window.location.href = "mksport://lanjut?adsok=true";
     }
   </script>
-
 </body>
 </html>
