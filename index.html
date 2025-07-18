@@ -1,94 +1,95 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      text-align: center;
-      background: linear-gradient(to bottom, #ff0000, #000000);
-      color: white;
-    }
-    .native {
-      margin: 10px auto;
-    }
-    .box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px;
-      margin: 10px auto;
-      border-radius: 10px;
-    }
-    #message {
-      font-weight: bold;
-      font-size: 16px;
-      margin-top: 15px;
-    }
-  </style>
-</head>
-<body>
-  <h3>Tunggu 15 Detik...</h3>
-  <div id="countdown">5</div>
+<!DOCTYPE html>  <html>  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Tonton Iklan Dulu</title>  
+  <style>  
+    body {  
+      font-family: sans-serif;  
+      text-align: center;  
+      background-color: #000;  
+      color: white;  
+      margin: 0;  
+      padding: 0;  
+    }  h2 {  
+  margin-top: 60px;  
+}  
 
-  <!-- Iklan Native -->
-  <div class="native" id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-  <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
+#lanjut {  
+  display: none;  
+  margin-top: 10px;  
+  margin-bottom: 30px;  
+  padding: 15px 30px;  
+  font-size: 18px;  
+  font-weight: bold;  
+  color: #fff;  
+  background: linear-gradient(135deg, #ff0000, #000000);  
+  border: none;  
+  border-radius: 10px;  
+  cursor: pointer;  
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);  
+  transition: 0.3s;  
+}  
 
-  <!-- Iklan Tambahan -->
-  <div class="box" id="container-1"></div>
-  <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/6b1d3ae1e67e014a7f67e58ce60b2b29/invoke.js"></script>
+#lanjut:hover {  
+  opacity: 0.85;  
+  transform: scale(1.05);  
+}  
 
-  <div class="box" id="container-2"></div>
-  <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/a5fdd823801a4cd6149d579dd31c42e3/invoke.js"></script>
+.iklan {  
+  margin: 20px auto;  
+}
 
-  <div class="box" id="container-3"></div>
-  <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/1794b8df7c7a418de2f7a0c997f2a6b4/invoke.js"></script>
+  </style>  
+</head>  
+<body>    <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>    <!-- Tombol di atas -->  <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
-  <div id="message"></div>
-
-  <script>
-    let counter = 5;
-    const countdownEl = document.getElementById("countdown");
-    const messageEl = document.getElementById("message");
-
-    const checkAds = () => {
-      const containers = [
-        "container-d483e7bbc26ea2bdda8ef6a24ccadff6",
-        "container-1",
-        "container-2",
-        "container-3"
-      ];
-      let visibleAds = 0;
-      containers.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && el.innerHTML.trim().length > 0) visibleAds++;
-      });
-
-      if (visibleAds > 0) {
-        messageEl.innerHTML = `
-          <div>## 🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</div>
-          <div>Selamat Menonton</div>
-        `;
-        if (window.AndroidInterface) {
-          window.AndroidInterface.setAdsOk("true");
-        }
-      } else {
-        messageEl.innerText = "Iklan diblokir. Harap nonaktifkan AdBlock!";
-        if (window.AndroidInterface) {
-          window.AndroidInterface.setAdsOk("false");
-        }
-      }
-    };
-
-    const countdown = setInterval(() => {
-      counter--;
-      countdownEl.innerText = counter;
-      if (counter <= 0) {
-        clearInterval(countdown);
-        checkAds();
-      }
-    }, 1000);
-  </script>
-</body>
+  <!-- 4 Wadah Iklan -->    <div id="iklan1" class="iklan"></div>  
+  <div id="iklan2" class="iklan"></div>  
+  <div id="iklan3" class="iklan"></div>  
+  <div id="iklan4" class="iklan"></div>    <!-- Iklan 1: 728x90 -->    <script>  
+    atOptions = {  
+      'key': 'b1797000fb9be915983ab2fc8040ecb4',  
+      'format': 'iframe',  
+      'height': 90,  
+      'width': 728,  
+      'params': {},  
+      'container': 'iklan1'  
+    };  
+  </script>    <script src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>    <!-- Iklan 2: 300x250 -->    <script>  
+    atOptions = {  
+      'key': 'd3ef5858953dc899c272e4b1bccad01e',  
+      'format': 'iframe',  
+      'height': 250,  
+      'width': 300,  
+      'params': {},  
+      'container': 'iklan2'  
+    };  
+  </script>    <script src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>    <!-- Iklan 3: 320x50 -->    <script>  
+    atOptions = {  
+      'key': 'a23628848e329cb02d62c84da851d39e',  
+      'format': 'iframe',  
+      'height': 50,  
+      'width': 320,  
+      'params': {},  
+      'container': 'iklan3'  
+    };  
+  </script>    <script src="//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js"></script>    <!-- Iklan 4: 160x600 -->    <script>  
+    atOptions = {  
+      'key': 'a123456789examplekey456789000',  
+      'format': 'iframe',  
+      'height': 600,  
+      'width': 160,  
+      'params': {},  
+      'container': 'iklan4'  
+    };  
+  </script>    <script src="//www.highperformanceformat.com/a123456789examplekey456789000/invoke.js"></script>    <!-- Logika tampilkan tombol -->    <script>  
+    setTimeout(function () {  
+      document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";  
+      document.getElementById("lanjut").style.display = "inline-block";  
+    }, 5000);  
+  
+    function lanjut() {  
+      window.location.href = "mksport://lanjut?adsok=true";  
+    }  
+  </script>  </body>  
 </html>
