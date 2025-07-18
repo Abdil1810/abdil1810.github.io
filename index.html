@@ -46,13 +46,24 @@
   </style>
 </head>
 <body>
-  <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
+  <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗</h2>
 
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
   <!-- Iklan 1: 728x90 -->
   <div id="iklan1" class="iklan"></div>
+  <!-- Iklan 2: 300x250 -->
+  <div id="iklan2" class="iklan"></div>
+  <!-- Iklan 3: 320x50 -->
+  <div id="iklan3" class="iklan"></div>
+  <!-- Iklan 4 (Native): -->
+  <div id="iklan4" class="iklan">
+    <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
+  </div>
+
+  <!-- Script Iklan -->
   <script>
+    // Iklan 1 - HighPerformance 728x90
     (function() {
       var atOptions = {
         'key': 'b1797000fb9be915983ab2fc8040ecb4',
@@ -66,11 +77,8 @@
       script.src = "//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js";
       document.body.appendChild(script);
     })();
-  </script>
 
-  <!-- Iklan 2: 300x250 -->
-  <div id="iklan2" class="iklan"></div>
-  <script>
+    // Iklan 2 - HighPerformance 300x250
     (function() {
       var atOptions = {
         'key': 'd3ef5858953dc899c272e4b1bccad01e',
@@ -84,11 +92,8 @@
       script.src = "//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js";
       document.body.appendChild(script);
     })();
-  </script>
 
-  <!-- Iklan 3: 320x50 -->
-  <div id="iklan3" class="iklan"></div>
-  <script>
+    // Iklan 3 - Profitablerate 320x50
     (function() {
       var atOptions = {
         'key': 'a23628848e329cb02d62c84da851d39e',
@@ -102,16 +107,17 @@
       script.src = "//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js";
       document.body.appendChild(script);
     })();
-  </script>
 
-  <!-- Iklan 4 (Native Bar): dari profitableratecpm.com -->
-  <div id="iklan4" class="iklan">
-    <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-  </div>
-  <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
+    // Iklan 4 - Native
+    (function() {
+      var script = document.createElement('script');
+      script.async = true;
+      script.setAttribute('data-cfasync', 'false');
+      script.src = "//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js";
+      document.body.appendChild(script);
+    })();
 
-  <!-- Tampilkan tombol setelah 5 detik -->
-  <script>
+    // Tampilkan tombol setelah 5 detik
     setTimeout(function () {
       document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
       document.getElementById("lanjut").style.display = "inline-block";
