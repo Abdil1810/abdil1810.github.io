@@ -12,9 +12,11 @@
       margin: 0;
       padding: 0;
     }
+
     h2 {
       margin-top: 60px;
     }
+
     #lanjut {
       display: none;
       margin-top: 10px;
@@ -30,10 +32,12 @@
       box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
       transition: 0.3s;
     }
+
     #lanjut:hover {
       opacity: 0.85;
       transform: scale(1.05);
     }
+
     .iklan {
       margin: 20px auto;
       display: block;
@@ -42,28 +46,67 @@
   </style>
 </head>
 <body>
-  <h2 id="pesan">🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
+  <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
 
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
-  <!-- Iklan 1 -->
-  <div class="iklan">
-    <script async="async" data-cfasync="false" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
-    <div id="container-b1797000fb9be915983ab2fc8040ecb4"></div>
-  </div>
 
-  <!-- Iklan 2 -->
-  <div class="iklan">
-    <script async="async" data-cfasync="false" src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
-    <div id="container-d3ef5858953dc899c272e4b1bccad01e"></div>
-  </div>
+  <!-- Iklan 1: 728x90 -->
+  <div id="iklan1" class="iklan"></div>
+  <script>
+    (function() {
+      var atOptions = {
+        'key': 'b1797000fb9be915983ab2fc8040ecb4',
+        'format': 'iframe',
+        'height': 90,
+        'width': 728,
+        'params': {},
+        'container': 'iklan1'
+      };
+      var script = document.createElement('script');
+      script.src = "//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js";
+      document.body.appendChild(script);
+    })();
+  </script>
 
-  <!-- Iklan 3 -->
-  <div class="iklan">
-    <script async="async" data-cfasync="false" src="//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js"></script>
-    <div id="container-a23628848e329cb02d62c84da851d39e"></div>
-  </div>
+  <!-- Iklan 2: 300x250 -->
+  <div id="iklan2" class="iklan"></div>
+  <script>
+    (function() {
+      var atOptions = {
+        'key': 'd3ef5858953dc899c272e4b1bccad01e',
+        'format': 'iframe',
+        'height': 250,
+        'width': 300,
+        'params': {},
+        'container': 'iklan2'
+      };
+      var script = document.createElement('script');
+      script.src = "//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js";
+      document.body.appendChild(script);
+    })();
+  </script>
 
+  <!-- Iklan 3: 320x50 -->
+  <div id="iklan3" class="iklan"></div>
+  <script>
+    (function() {
+      var atOptions = {
+        'key': 'a23628848e329cb02d62c84da851d39e',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {},
+        'container': 'iklan3'
+      };
+      var script = document.createElement('script');
+      script.src = "//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js";
+      document.body.appendChild(script);
+    })();
+  </script>
+
+  
+  <!-- Tampilkan tombol setelah 5 detik -->
   <script>
     setTimeout(function () {
       document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
