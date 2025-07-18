@@ -19,7 +19,8 @@
 
     #lanjut {
       display: none;
-      margin-top: 20px;
+      margin-top: 10px;
+      margin-bottom: 30px;
       padding: 15px 30px;
       font-size: 18px;
       font-weight: bold;
@@ -46,19 +47,19 @@
 
   <h2 id="pesan">Tunggu sebentar ya...</h2>
 
+  <!-- Tombol di atas -->
+  <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
+
   <!-- 4 Wadah Iklan -->
   <div id="iklan1" class="iklan"></div>
   <div id="iklan2" class="iklan"></div>
   <div id="iklan3" class="iklan"></div>
   <div id="iklan4" class="iklan"></div>
 
-  <!-- Tombol Lanjut -->
-  <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
-
-  <!-- Iklan 1 -->
+  <!-- Iklan 1: 728x90 -->
   <script>
     atOptions = {
-      'key': 'KEY_PERTAMA',
+      'key': 'b1797000fb9be915983ab2fc8040ecb4',
       'format': 'iframe',
       'height': 90,
       'width': 728,
@@ -66,12 +67,12 @@
       'container': 'iklan1'
     };
   </script>
-  <script src="//www.highperformanceformat.com/KEY_PERTAMA/invoke.js"></script>
+  <script src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
 
-  <!-- Iklan 2 -->
+  <!-- Iklan 2: 300x250 -->
   <script>
     atOptions = {
-      'key': 'KEY_KEDUA',
+      'key': 'd3ef5858953dc899c272e4b1bccad01e',
       'format': 'iframe',
       'height': 250,
       'width': 300,
@@ -79,12 +80,12 @@
       'container': 'iklan2'
     };
   </script>
-  <script src="//www.highperformanceformat.com/KEY_KEDUA/invoke.js"></script>
+  <script src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
 
-  <!-- Iklan 3 -->
+  <!-- Iklan 3: 320x50 -->
   <script>
     atOptions = {
-      'key': 'KEY_KETIGA',
+      'key': 'a23628848e329cb02d62c84da851d39e',
       'format': 'iframe',
       'height': 50,
       'width': 320,
@@ -92,12 +93,12 @@
       'container': 'iklan3'
     };
   </script>
-  <script src="//www.highperformanceformat.com/KEY_KETIGA/invoke.js"></script>
+  <script src="//pl27167535.profitableratecpm.com/a2/36/28/a23628848e329cb02d62c84da851d39e.js"></script>
 
-  <!-- Iklan 4 -->
+  <!-- Iklan 4: 160x600 -->
   <script>
     atOptions = {
-      'key': 'KEY_KEEMPAT',
+      'key': 'a123456789examplekey456789000',
       'format': 'iframe',
       'height': 600,
       'width': 160,
@@ -105,9 +106,9 @@
       'container': 'iklan4'
     };
   </script>
-  <script src="//www.highperformanceformat.com/KEY_KEEMPAT/invoke.js"></script>
+  <script src="//www.highperformanceformat.com/a123456789examplekey456789000/invoke.js"></script>
 
-  <!-- Logika Tampilkan Tombol -->
+  <!-- Logika tampilkan tombol -->
   <script>
     setTimeout(function () {
       document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
