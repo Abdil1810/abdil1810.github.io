@@ -50,6 +50,46 @@
 
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 <div class="ad-container" id="ad1">
+<script>
+  function getParameterByName(name) {
+    const url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  function lanjut() {
+    const deviceId = getParameterByName("deviceId");
+    if (!deviceId) {
+      alert("Device ID tidak ditemukan!");
+      return;
+    }
+
+    // Kirim ke Apps Script
+    fetch("https://script.google.com/macros/s/AKfycbznOW2N3qZI9uURT3kDxzL6KLoHVoJfvGyyf4nipkB0orvbEZ7Rcxe4qx_6g5GL0JLWWA/exec?free=true&deviceId=" + deviceId)
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Lanjut ke aplikasi
+          window.location.href = "mksport://lanjut?adsok=true";
+        } else {
+          alert("Gagal login gratis: " + data.message);
+        }
+      })
+      .catch(err => {
+        alert("Gagal koneksi: " + err);
+      });
+  }
+
+  setTimeout(function () {
+    document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
+    document.getElementById("lanjut").style.display = "inline-block";
+  }, 5000);
+</script>
+  
     <script type="text/javascript">
       atOptions = {
         'key' : 'b1797000fb9be915983ab2fc8040ecb4',
