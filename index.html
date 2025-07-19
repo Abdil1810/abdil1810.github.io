@@ -2,124 +2,61 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Tonton Iklan Dulu</title>
+  <title>Tonton Iklan</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
-      background-color: #000;
-      color: white;
-      margin: 0;
-      padding: 0;
+      padding: 40px;
     }
-
-    h2 {
-      margin-top: 60px;
-    }
-
-    #lanjut {
+    #lanjutBtn {
       display: none;
-      margin-top: 10px;
-      margin-bottom: 30px;
+      margin-top: 20px;
       padding: 15px 30px;
       font-size: 18px;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(135deg, #ff0000, #000000);
+      background-color: green;
+      color: white;
       border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-      transition: 0.3s;
-    }
-
-    #lanjut:hover {
-      opacity: 0.85;
-      transform: scale(1.05);
-    }
-
-    .iklan {
-      margin: 20px auto;
-      display: block;
-      text-align: center;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <h2 id="pesan">🤗 Tanpa Iklan Hanya 10K 🤗</h2>
 
-  <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
-<div class="ad-container" id="ad1">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'b1797000fb9be915983ab2fc8040ecb4',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
-  </div>
+  <h2>Menonton Iklan...</h2>
+  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" width="100%" height="300"></iframe>
 
-  <div class="ad-container" id="ad2">
-    <script async="async" data-cfasync="false" src="//pl27167535.profitableratecpm.com/a23628848e329cb02d62c84da851d39e.js"></script>
-  </div>
+  <button id="lanjutBtn" onclick="lanjut()">✅ Selamat Menonton</button>
 
-  <div class="ad-container" id="ad3">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'd3ef5858953dc899c272e4b1bccad01e',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
-  </div>
-
-  <div class="ad-container" id="ad4">
-    <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
-    <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-  </div>
-
-  <div class="ad-container" id="ad5">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : 'b53e8b1e80d6e08f0cadfabcae10313d',
-        'format' : 'iframe',
-        'height' : 300,
-        'width' : 160,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/b53e8b1e80d6e08f0cadfabcae10313d/invoke.js"></script>
-  </div>
-
-  <div class="ad-container" id="ad6">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '9b27368b06b44b0833020076eb419df1',
-        'format' : 'iframe',
-        'height' : 600,
-        'width' : 160,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
-  </div>
-  
-  <!-- Tampilkan tombol setelah 5 detik -->
   <script>
-    setTimeout(function () {
-      document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
-      document.getElementById("lanjut").style.display = "inline-block";
+    // Simpan deviceId dan username dari URL
+    const query = new URLSearchParams(window.location.search);
+    const deviceId = query.get("deviceId") || "UNKNOWN";
+    const username = query.get("username") || "usergratis";
+
+    // Tampilkan tombol setelah 5 detik
+    setTimeout(() => {
+      document.getElementById("lanjutBtn").style.display = "inline-block";
     }, 5000);
 
     function lanjut() {
-      window.location.href = "mksport://lanjut?adsok=true";
+      const url = `https://script.google.com/macros/s/AKfycbznOW2N3qZI9uURT3kDxzL6KLoHVoJfvGyyf4nipkB0orvbEZ7Rcxe4qx_6g5GL0JLWWA/exec?free=true&deviceId=${deviceId}&username=${username}&source=login&adsok=true`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            // Login sukses → lanjut ke app
+            window.location.href = `mksport://lanjut?adsok=true`;
+          } else {
+            alert("Gagal: " + data.message);
+          }
+        })
+        .catch(err => {
+          alert("Gagal koneksi: " + err.message);
+        });
     }
   </script>
+
 </body>
 </html>
