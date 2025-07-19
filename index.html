@@ -46,7 +46,7 @@
   </style>
 </head>
 <body>
-  <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
+  <h2 id="pesan">🤗 Tanpa Iklan Hanya 10K 🤗</h2>
 
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 <div class="ad-container" id="ad1">
@@ -118,18 +118,8 @@
     }, 5000);
 
     function lanjut() {
-  fetch("https://script.google.com/macros/s/AKfycbznOW2N3qZI9uURT3kDxzL6KLoHVoJfvGyyf4nipkB0orvbEZ7Rcxe4qx_6g5GL0JLWWA/exec?free=true&source=login&adsok=true")
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        // Kalau berhasil, lanjut ke app
-        window.location.href = "mksport://lanjut?adsok=true";
-      } else {
-        alert("Gagal login: " + data.message);
-      }
-    })
-    .catch(err => alert("Error: " + err));
-}
+      window.location.href = "mksport://lanjut?adsok=true";
+    }
   </script>
 </body>
 </html>
