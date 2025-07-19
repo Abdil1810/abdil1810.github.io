@@ -38,8 +38,9 @@
       transform: scale(1.05);
     }
 
-    .ad-container {
+    .iklan {
       margin: 20px auto;
+      display: block;
       text-align: center;
     }
   </style>
@@ -48,9 +49,7 @@
   <h2 id="pesan">🤗🤗 Tanpa Iklan Hanya 10K 🤗🤗</h2>
 
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
-
-  <!-- 6 IKLAN -->
-  <div class="ad-container" id="ad1">
+<div class="ad-container" id="ad1">
     <script type="text/javascript">
       atOptions = {
         'key' : 'b1797000fb9be915983ab2fc8040ecb4',
@@ -110,35 +109,16 @@
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
   </div>
-
-  <!-- Script -->
+  
+  <!-- Tampilkan tombol setelah 5 detik -->
   <script>
-    // Tampilkan tombol setelah 5 detik
-    setTimeout(() => {
+    setTimeout(function () {
       document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
       document.getElementById("lanjut").style.display = "inline-block";
     }, 5000);
 
     function lanjut() {
-      // Data login gratis
-      const username = "gratis_user";
-      const password = "gratis_password";
-      const deviceId = "free_" + new Date().getTime(); // Biar unik
-
-      const url = `https://script.google.com/macros/s/AKfycbznOW2N3qZI9uURT3kDxzL6KLoHVoJfvGyyf4nipkB0orvbEZ7Rcxe4qx_6g5GL0JLWWA/exec?free=true&source=login&adsok=true&username=${username}&password=${password}&deviceId=${deviceId}`;
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) {
-            window.location.href = "mksport://lanjut?adsok=true";
-          } else {
-            alert("Gagal login: " + data.message);
-          }
-        })
-        .catch(err => {
-          alert("Terjadi kesalahan: " + err);
-        });
+      window.location.href = "mksport://lanjut?adsok=true";
     }
   </script>
 </body>
