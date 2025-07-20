@@ -38,18 +38,27 @@
       transform: scale(1.05);
     }
 
-    .iklan {
+    .ad-container {
       margin: 20px auto;
-      display: block;
       text-align: center;
+    }
+
+    #adblock-message {
+      color: yellow;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
     }
   </style>
 </head>
 <body>
   <h2 id="pesan">🤗 Tanpa Iklan Hanya 10K 🤗</h2>
 
+  <div id="adblock-message">❌ Matikan AdBlock untuk melanjutkan!</div>
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
-<div class="ad-container" id="ad1">
+
+  <!-- 6 Unit Iklan -->
+  <div class="ad-container ad-test" id="ad1">
     <script type="text/javascript">
       atOptions = {
         'key' : 'b1797000fb9be915983ab2fc8040ecb4',
@@ -109,13 +118,24 @@
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
   </div>
-  
-  <!-- Tampilkan tombol setelah 5 detik -->
+
+  <!-- Deteksi AdBlock & tombol -->
   <script>
-    setTimeout(function () {
-      document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
-      document.getElementById("lanjut").style.display = "inline-block";
-    }, 5000);
+    // Cek AdBlock berdasarkan tag .ad-test
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const adTest = document.querySelector('.ad-test');
+        if (!adTest || adTest.offsetHeight === 0 || adTest.innerHTML.length < 50) {
+          // Iklan diblok
+          document.getElementById("adblock-message").style.display = "block";
+          document.getElementById("pesan").innerText = "❌ AdBlock terdeteksi!";
+        } else {
+          // Iklan tampil
+          document.getElementById("pesan").innerText = "Silakan klik tombol di bawah ini. Selamat menonton!";
+          document.getElementById("lanjut").style.display = "inline-block";
+        }
+      }, 5000);
+    });
 
     function lanjut() {
       window.location.href = "mksport://lanjut?adsok=true";
