@@ -20,7 +20,7 @@
     #lanjut {
       display: none;
       margin-top: 10px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       padding: 15px 30px;
       font-size: 18px;
       font-weight: bold;
@@ -33,9 +33,26 @@
       transition: 0.3s;
     }
 
-    #lanjut:hover {
+    #lanjut:hover,
+    #update:hover {
       opacity: 0.85;
       transform: scale(1.05);
+    }
+
+    #update {
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #ff0000, #000000);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+      transition: 0.3s;
     }
 
     .ad-container {
@@ -55,17 +72,22 @@
   <h2 id="pesan">Apk Update Hub 082154564411 link update https://sfile.mobi/94VYUGCoIo7</h2>
 
   <div id="adblock-message">❌ Matikan AdBlock untuk melanjutkan!</div>
+
+  <!-- Tombol Update selalu muncul -->
+  <button id="update" onclick="updateApk()">Update APK</button><br>
+
+  <!-- Tombol Selamat Menonton hanya muncul kalau iklan tampil -->
   <button id="lanjut" onclick="lanjut()">Selamat Menonton</button>
 
   <!-- 6 Unit Iklan -->
   <div class="ad-container ad-test" id="ad1">
     <script type="text/javascript">
       atOptions = {
-        'key' : 'b1797000fb9be915983ab2fc8040ecb4',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
+        'key': 'b1797000fb9be915983ab2fc8040ecb4',
+        'format': 'iframe',
+        'height': 90,
+        'width': 728,
+        'params': {}
       };
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
@@ -78,11 +100,11 @@
   <div class="ad-container" id="ad3">
     <script type="text/javascript">
       atOptions = {
-        'key' : 'd3ef5858953dc899c272e4b1bccad01e',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
+        'key': 'd3ef5858953dc899c272e4b1bccad01e',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
       };
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
@@ -96,11 +118,11 @@
   <div class="ad-container" id="ad5">
     <script type="text/javascript">
       atOptions = {
-        'key' : 'b53e8b1e80d6e08f0cadfabcae10313d',
-        'format' : 'iframe',
-        'height' : 300,
-        'width' : 160,
-        'params' : {}
+        'key': 'b53e8b1e80d6e08f0cadfabcae10313d',
+        'format': 'iframe',
+        'height': 300,
+        'width': 160,
+        'params': {}
       };
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/b53e8b1e80d6e08f0cadfabcae10313d/invoke.js"></script>
@@ -109,24 +131,23 @@
   <div class="ad-container" id="ad6">
     <script type="text/javascript">
       atOptions = {
-        'key' : '9b27368b06b44b0833020076eb419df1',
-        'format' : 'iframe',
-        'height' : 600,
-        'width' : 160,
-        'params' : {}
+        'key': '9b27368b06b44b0833020076eb419df1',
+        'format': 'iframe',
+        'height': 600,
+        'width': 160,
+        'params': {}
       };
     </script>
     <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
   </div>
 
-  <!-- Deteksi AdBlock & tombol -->
+  <!-- Script deteksi AdBlock -->
   <script>
-    // Cek AdBlock berdasarkan tag .ad-test
     window.addEventListener('load', () => {
       setTimeout(() => {
         const adTest = document.querySelector('.ad-test');
         if (!adTest || adTest.offsetHeight === 0 || adTest.innerHTML.length < 50) {
-          // Iklan diblok
+          // AdBlock aktif
           document.getElementById("adblock-message").style.display = "block";
           document.getElementById("pesan").innerText = "❌ AdBlock terdeteksi!";
         } else {
@@ -139,6 +160,10 @@
 
     function lanjut() {
       window.location.href = "mksport://lanjut?adsok=true";
+    }
+
+    function updateApk() {
+      window.location.href = "https://sfile.mobi/94VYUGCoIo7";
     }
   </script>
 </body>
