@@ -1,169 +1,283 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Tonton Iklan Dulu</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      background-color: #000;
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
+import { MapContainer, TileLayer, Circle, Marker, Polyline, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
-    h2 {
-      margin-top: 60px;
-    }
+export default function WifiCoverageMap() {
+  const center = [-3.4875304, 114.9769972];
 
-    #lanjut {
-      display: none;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      padding: 15px 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(135deg, #ff0000, #000000);
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-      transition: 0.3s;
-    }
+  const core = {
+    name: 'Mikrotik Core',
+    position: [-3.48773, 114.97695],
+  };
 
-    #lanjut:hover,
-    #update:hover {
-      opacity: 0.85;
-      transform: scale(1.05);
-    }
+  const odps = [
+    {
+      id: 'ODP-1',
+      position: [-3.48748, 114.97688],
+      aps: ['AP-1', 'AP-2', 'AP-3'],
+    },
+    {
+      id: 'ODP-2',
+      position: [-3.48772, 114.97702],
+      aps: ['AP-4', 'AP-5', 'AP-6'],
+    },
+    {
+      id: 'ODP-3',
+      position: [-3.48790, 114.97718],
+      aps: ['AP-7', 'AP-8', 'AP-9', 'AP-10'],
+    },
+  ];
 
-    #update {
-      display: inline-block;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      padding: 15px 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(135deg, #ff0000, #000000);
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-      transition: 0.3s;
-    }
+  const aps = [
+    // Area pemukiman utara
+    { id: 'AP-1', position: [-3.48740, 114.97667], clients: 10 },
+    { id: 'AP-2', position: [-3.48742, 114.97700], clients: 11 },
+    { id: 'AP-3', position: [-3.48745, 114.97730], clients: 9 },
 
-    .ad-container {
-      margin: 20px auto;
-      text-align: center;
-    }
+    // Tengah pemukiman padat
+    { id: 'AP-4', position: [-3.48766, 114.97673], clients: 14 },
+    { id: 'AP-5', position: [-3.48770, 114.97703], clients: 12 },
+    { id: 'AP-6', position: [-3.48772, 114.97734], clients: 10 },
 
-    #adblock-message {
-      color: yellow;
-      font-weight: bold;
-      margin-top: 20px;
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <h2 id="pesan">🤗🤗Tunggu beberapa detik. . .🤗🤗</h2>
+    // Selatan area rumah
+    { id: 'AP-7', position: [-3.48792, 114.97678], clients: 11 },
+    { id: 'AP-8', position: [-3.48796, 114.97710], clients: 13 },
+    { id: 'AP-9', position: [-3.48798, 114.97742], clients: 9 },
 
-  <div id="adblock-message">❌ Matikan AdBlock untuk melanjutkan!</div>
+    // Timur masih area rumah kecil
+    { id: 'AP-10', position: [-3.48774, 114.97746], clients: 8 },
+  ];
 
-  <!-- Tombol Update selalu muncul -->
+  return (
+    <div className="min-h-screen bg-[#050816] text-white p-5">
+      <div className="max-w-[1600px] mx-auto">
+        <div className="flex items-center justify-between mb-5">
+          <div>
+            <h1 className="text-4xl font-black tracking-tight">
+              RT/RW Net Coverage Map
+            </h1>
 
-  <!-- Tombol Selamat Menonton hanya muncul kalau iklan tampil -->
+            <p className="text-zinc-400 mt-2">
+              Visualisasi real map berdasarkan koordinat area Google Maps.
+            </p>
+          </div>
 
+          <div className="bg-[#0d1326] border border-cyan-500/20 rounded-2xl px-5 py-3">
+            <div className="text-xs text-zinc-400">
+              NETWORK STATUS
+            </div>
 
-  <!-- 6 Unit Iklan -->
-  <div class="ad-container ad-test" id="ad1">
-    <script type="text/javascript">
-      atOptions = {
-        'key': 'b1797000fb9be915983ab2fc8040ecb4',
-        'format': 'iframe',
-        'height': 90,
-        'width': 728,
-        'params': {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/b1797000fb9be915983ab2fc8040ecb4/invoke.js"></script>
-  </div>
+            <div className="font-bold text-green-400">
+              ONLINE
+            </div>
+          </div>
+        </div>
 
-  <div class="ad-container" id="ad2">
-    <script async="async" data-cfasync="false" src="//pl27167535.profitableratecpm.com/a23628848e329cb02d62c84da851d39e.js"></script>
-  </div>
+        <div className="grid lg:grid-cols-[1fr_320px] gap-5">
+          <div className="bg-[#0b1020] border border-white/10 rounded-[30px] overflow-hidden shadow-2xl">
+            <MapContainer
+              center={center}
+              zoom={17}
+              style={{ height: '820px', width: '100%' }}
+            >
+              <TileLayer
+                attribution='&copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics'
+                url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+              />
 
-  <div class="ad-container" id="ad3">
-    <script type="text/javascript">
-      atOptions = {
-        'key': 'd3ef5858953dc899c272e4b1bccad01e',
-        'format': 'iframe',
-        'height': 50,
-        'width': 320,
-        'params': {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/d3ef5858953dc899c272e4b1bccad01e/invoke.js"></script>
-  </div>
+              {/* Backbone CORE → ODP */}
+              {odps.map((odp) => (
+                <Polyline
+                  key={`backbone-${odp.id}`}
+                  positions={[core.position, odp.position]}
+                  pathOptions={{
+                    color: '#ff3b3b',
+                    weight: 5,
+                    opacity: 0.9,
+                  }}
+                />
+              ))}
 
-  <div class="ad-container" id="ad4">
-    <script async="async" data-cfasync="false" src="//pl27167559.profitableratecpm.com/d483e7bbc26ea2bdda8ef6a24ccadff6/invoke.js"></script>
-    <div id="container-d483e7bbc26ea2bdda8ef6a24ccadff6"></div>
-  </div>
+              {/* ODP Marker */}
+              {odps.map((odp) => (
+                <Marker
+                  key={odp.id}
+                  position={odp.position}
+                >
+                  <Popup>
+                    <div className="space-y-1">
+                      <div className="font-bold text-lg">
+                        {odp.id}
+                      </div>
 
-  <div class="ad-container" id="ad5">
-    <script type="text/javascript">
-      atOptions = {
-        'key': 'b53e8b1e80d6e08f0cadfabcae10313d',
-        'format': 'iframe',
-        'height': 300,
-        'width': 160,
-        'params': {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/b53e8b1e80d6e08f0cadfabcae10313d/invoke.js"></script>
-  </div>
+                      <div>
+                        Distribution Point
+                      </div>
 
-  <div class="ad-container" id="ad6">
-    <script type="text/javascript">
-      atOptions = {
-        'key': '9b27368b06b44b0833020076eb419df1',
-        'format': 'iframe',
-        'height': 600,
-        'width': 160,
-        'params': {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/9b27368b06b44b0833020076eb419df1/invoke.js"></script>
-  </div>
-  <button id="lanjut" onclick="lanjut()">Tonton Ja Sanak Ae</button>
-  <!-- Script deteksi AdBlock -->
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const adTest = document.querySelector('.ad-test');
-        if (!adTest || adTest.offsetHeight === 0 || adTest.innerHTML.length < 50) {
-          // AdBlock aktif
-          document.getElementById("adblock-message").style.display = "block";
-          document.getElementById("pesan").innerText = "❌ AdBlock terdeteksi!";
-        } else {
-          // Iklan tampil
-          document.getElementById("pesan").innerText = "Scroll ke bawah klik tonton ja sanak ae";
-          document.getElementById("lanjut").style.display = "inline-block";
-        }
-      }, 5000);
-    });
+                      <div>
+                        Total AP: {odp.aps.length}
+                      </div>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
 
-    function lanjut() {
-      window.location.href = "mksport://lanjut?adsok=true";
-    }
+              {/* Core Router */}
+              <Marker position={core.position}>
+                <Popup>
+                  <div className="font-bold">
+                    Mikrotik Core Router
+                  </div>
 
-    function updateApk() {
-      window.location.href = "https://wa.me/6282154564411";
-    }
-  </script>
-</body>
-</html>
+                  <div>
+                    Backbone Distribution Center
+                  </div>
+                </Popup>
+              </Marker>
+
+              {/* AP Coverage */}
+              {aps.map((ap) => {
+                const parentODP = odps.find((odp) =>
+                  odp.aps.includes(ap.id)
+                );
+
+                return (
+                  <div key={ap.id}>
+                    {/* Coverage Radius */}
+                    <Circle
+                      center={ap.position}
+                      radius={22}
+                      pathOptions={{
+                        color: '#00d4ff',
+                        fillColor: '#00d4ff',
+                        fillOpacity: 0.15,
+                      }}
+                    />
+
+                    {/* AP Marker */}
+                    <Marker position={ap.position}>
+                      <Popup>
+                        <div className="space-y-1">
+                          <div className="font-bold text-lg">
+                            {ap.id}
+                          </div>
+
+                          <div>
+                            Coverage Radius: 22m
+                          </div>
+
+                          <div>
+                            Connected Houses: {ap.clients}
+                          </div>
+
+                          <div>
+                            Status: Online
+                          </div>
+
+                          <div>
+                            Radius: Fixed 22m
+                          </div>
+                        </div>
+                      </Popup>
+                    </Marker>
+
+                    {/* ODP → AP */}
+                    {parentODP && (
+                      <Polyline
+                        positions={[
+                          parentODP.position,
+                          ap.position,
+                        ]}
+                        pathOptions={{
+                          color: '#ffffff',
+                          dashArray: '6 6',
+                          weight: 3,
+                          opacity: 0.8,
+                        }}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </MapContainer>
+          </div>
+
+          <div className="space-y-5">
+            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
+              <div className="text-zinc-400 text-sm">
+                TOTAL ACCESS POINT
+              </div>
+
+              <div className="text-5xl font-black mt-2">
+                10
+              </div>
+            </div>
+
+            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
+              <div className="text-zinc-400 text-sm">
+                TOTAL ESTIMATED CLIENT
+              </div>
+
+              <div className="text-5xl font-black mt-2">
+                109
+              </div>
+            </div>
+
+            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
+              <div className="text-zinc-400 text-sm">
+                AP COVERAGE
+              </div>
+
+              <div className="text-5xl font-black mt-2">
+                22m
+              </div>
+            </div>
+
+            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
+              <div className="text-lg font-bold mb-4">
+                Topology Notes
+              </div>
+
+              <ul className="space-y-3 text-sm text-zinc-300">
+                <li>
+                  • CORE hanya menarik backbone ke 3 titik ODP.
+                </li>
+
+                <li>
+                  • ODP-1 melayani area utara (AP1–AP3).
+                </li>
+
+                <li>
+                  • ODP-2 melayani area tengah (AP4–AP6).
+                </li>
+
+                <li>
+                  • ODP-3 melayani area selatan & timur (AP7–AP10).
+                </li>
+
+                <li>
+                  • Semua AP memakai radius fixed 22 meter.
+                </li>
+
+                <li>
+                  • Jalur merah = backbone CORE menuju ODP.
+                </li>
+
+                <li>
+                  • Jalur putih = distribusi ODP menuju AP.
+                </li>
+
+                <li>
+                  • Backbone FO lebih hemat dibanding direct topology.
+                </li>
+
+                <li>
+                  • Struktur siap upgrade FTTH kedepannya.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
