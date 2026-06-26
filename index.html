@@ -50,34 +50,71 @@
             top: -2px; left: -2px;
             border-color: #00d2ff transparent transparent #00d2ff;
             border-width: 3px 0 0 3px;
-            filter: drop-shadow(0 0 5px #00d2ff);
+            /* Animasi kelap-kelip lampu neon cyan */
+            animation: neonFlickerCyan 3s infinite alternate;
         }
         .login-panel::after {
             bottom: -2px; right: -2px;
             border-color: transparent #ffaa00 #ffaa00 transparent;
             border-width: 0 3px 3px 0;
-            filter: drop-shadow(0 0 5px #ffaa00);
+            /* Animasi kelap-kelip lampu neon oranye */
+            animation: neonFlickerOrange 3.5s infinite alternate;
         }
 
-        /* Wadah Logo: Menggunakan trik Backlight Glow agar logo gelap lu kelihatan jelas */
+        /* Wadah Logo: Efek Backlight Glow yang ikutan kelap-kelip lembut */
         .logo-box {
             margin-bottom: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            background: radial-gradient(circle, rgba(0, 162, 255, 0.25) 0%, transparent 70%); /* Cahaya di belakang logo */
             padding: 15px 0;
+            border-radius: 50%;
+            animation: logoGlowPulse 4s infinite ease-in-out;
         }
         .logo-box img {
             width: 95%; 
             max-width: 340px; 
             height: auto;
-            /* Menaikkan kontras & memberi shadow putih/cyan tipis agar logo terpisah dari background gelap */
-            filter: contrast(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 15px rgba(0, 162, 255, 0.4));
+            filter: contrast(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
         }
 
-        /* Tab Switcher: Menu ala Interface Game */
+        /* ANIMASI KELAP-KELIP (CSS KEYFRAMES) */
+        /* 1. Kelap-kelip Neon Samping Cyan */
+        @keyframes neonFlickerCyan {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                filter: drop-shadow(0 0 8px #00d2ff) drop-shadow(0 0 15px #00d2ff);
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                filter: none;
+                opacity: 0.7; /* Efek redup instan seperti lampu neon asli agak rusak/gaming */
+            }
+        }
+
+        /* 2. Kelap-kelip Neon Samping Oranye */
+        @keyframes neonFlickerOrange {
+            0%, 38%, 42%, 45%, 88%, 92%, 100% {
+                filter: drop-shadow(0 0 8px #ffaa00) drop-shadow(0 0 15px #ffaa00);
+                opacity: 1;
+            }
+            40%, 44%, 90% {
+                filter: none;
+                opacity: 0.6;
+            }
+        }
+
+        /* 3. Efek Denyut Glow Lampu di Belakang Logo (Breathing Effect) */
+        @keyframes logoGlowPulse {
+            0%, 100% {
+                background: radial-gradient(circle, rgba(0, 162, 255, 0.3) 0%, transparent 65%);
+            }
+            50% {
+                background: radial-gradient(circle, rgba(0, 162, 255, 0.1) 0%, transparent 55%);
+            }
+        }
+
+        /* Tab Switcher (Interface Game) */
         .tab-container {
             display: flex;
             background: #03070d;
@@ -134,7 +171,6 @@
             font-weight: 600;
         }
 
-        /* Input Style: Kotak presisi khas gaming (bukan bulat biasa) */
         .voucher-form .v-code { border: 1px solid #00a2ff; margin-bottom: 15px; }
         .voucher-form .v-pass { border: 1px solid #ffaa00; }
         .voucher-form input:focus { outline: none; border-color: #fff; box-shadow: 0 0 15px currentcolor; }
@@ -215,257 +251,3 @@
                     <input type="text" id="m_user" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off">
                     <input type="password" id="m_pass" class="pass-in" placeholder="PASSWORD MEMBER">
                 </div>
-            </div>
-
-            <button type="submit" class="btn-connect">Hubungkan Internet</button>
-        </form>
-
-        <div class="net-info">
-            <p>Belum punya voucher? Hubungi Admin/Operator</p>
-            <p style="margin-top: 5px;">WA: <a href="https://wa.me/628xxxxxxxxxx" target="_blank">08xx-xxxx-xxxx</a></p>
-        </div>
-    </div>
-
-    <script>
-        function switchForm(type, button) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
-            
-            button.classList.add('active');
-            document.getElementById(type + '-form').classList.add('active');
-
-            const vUser = document.getElementById('v_user');
-            const vPass = document.getElementById('v_pass');
-            const mUser = document.getElementById('m_user');
-            const mPass = document.getElementById('m_pass');<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beruntung Net - RT/RW Net Hotspot</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
-
-        /* Background Utama Tetap Gelap Agar Efek Neon Menyala */
-        body {
-            background: radial-gradient(circle at center, #0f1c30 0%, #05080f 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Panel Utama - Diubah Menjadi Gradasi Biru Laut ke Putih */
-        .login-panel {
-            background: linear-gradient(135deg, #005580 0%, #0099ff 50%, #ffffff 100%);
-            padding: 35px 30px;
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            position: relative;
-        }
-
-        /* Dekorasi Neon Samping */
-        .login-panel::before, .login-panel::after {
-            content: '';
-            position: absolute;
-            top: 30%;
-            height: 40%;
-            width: 3px;
-        }
-        .login-panel::before { left: -2px; background: #00d2ff; box-shadow: -2px 0 15px #00d2ff; }
-        .login-panel::after { right: -2px; background: #ffaa00; box-shadow: 2px 0 15px #ffaa00; }
-
-        /* Wadah Logo - Transparan & Ukuran Diperbesar */
-        .logo-box {
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 5px;
-        }
-        .logo-box img {
-            width: 95%; 
-            max-width: 340px; 
-            height: auto;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
-        }
-
-        /* Tab Switcher (Voucher / Member) */
-        .tab-container {
-            display: flex;
-            background: rgba(5, 15, 30, 0.7);
-            border-radius: 50px;
-            margin-bottom: 25px;
-            padding: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 10px;
-            background: transparent;
-            border: none;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .tab-btn.active {
-            background: #00a2ff;
-            color: #fff;
-            box-shadow: 0 0 12px rgba(0, 162, 255, 0.6);
-        }
-
-        /* Form & Input */
-        .form-content {
-            display: none;
-        }
-        .form-content.active {
-            display: block;
-        }
-
-        .input-box {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .input-box input {
-            width: 100%;
-            padding: 14px 20px;
-            background: rgba(5, 12, 25, 0.95); /* Dipekatkan sedikit agar teks input putih terlihat jelas */
-            border-radius: 50px;
-            font-size: 1rem;
-            color: #fff;
-            text-align: center;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        /* Style Input Mode Voucher */
-        .voucher-form .v-code { border: 2px solid #00a2ff; margin-bottom: 15px; }
-        .voucher-form .v-pass { border: 2px solid #ffaa00; }
-        .voucher-form input:focus { outline: none; box-shadow: 0 0 15px currentcolor; }
-
-        /* Style Input Mode Member */
-        .member-form .user-in { border: 2px solid #00a2ff; margin-bottom: 15px; }
-        .member-form .pass-in { border: 2px solid #ffaa00; }
-        .member-form input:focus { outline: none; box-shadow: 0 0 15px currentcolor; }
-
-        /* Tombol Connect */
-        .btn-connect {
-            width: 100%;
-            padding: 14px;
-            background: #ffaa00; /* Menggunakan background solid agar kontras dengan bagian bawah form yang putih */
-            border: none;
-            border-radius: 50px;
-            color: #05080f;
-            font-size: 1.1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 170, 0, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn-connect:hover {
-            background: #e09600;
-            box-shadow: 0 6px 20px rgba(255, 170, 0, 0.6);
-            transform: translateY(-1px);
-        }
-
-        /* Info Lapak - Warna teks disesuaikan ke abu-abu gelap agar terbaca di area putih */
-        .net-info {
-            margin-top: 25px;
-            font-size: 0.85rem;
-            color: #334155;
-            line-height: 1.5;
-            font-weight: 500;
-        }
-
-        .net-info a {
-            color: #006699;
-            text-decoration: none;
-            font-weight: 700;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="login-panel">
-        <div class="logo-box">
-            <img src="image_f4e23d-removebg-preview.png" alt="Beruntung Net Logo">
-        </div>
-
-        <div class="tab-container">
-            <button class="tab-btn active" onclick="switchForm('voucher', this)">Kode Voucher</button>
-            <button class="tab-btn" onclick="switchForm('member', this)">Member / PPT</button>
-        </div>
-
-        <form action="#" method="POST">
-            
-            <div id="voucher-form" class="form-content active class-voucher">
-                <div class="input-box voucher-form">
-                    <input type="text" id="v_user" name="username" class="v-code" placeholder="MASUKKAN KODE VOUCHER" autocomplete="off">
-                    <input type="password" id="v_pass" name="password" class="v-pass" placeholder="MASUKKAN SANDI VOUCHER"> 
-                </div>
-            </div>
-
-            <div id="member-form" class="form-content class-member">
-                <div class="input-box member-form">
-                    <input type="text" id="m_user" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off">
-                    <input type="password" id="m_pass" class="pass-in" placeholder="PASSWORD MEMBER">
-                </div>
-            </div>
-
-            <button type="submit" class="btn-connect">Hubungkan Internet</button>
-        </form>
-
-        <div class="net-info">
-            <p>Belum punya voucher? Hubungi Admin/Operator</p>
-            <p style="margin-top: 5px;">WA: <a href="https://wa.me/628xxxxxxxxxx" target="_blank">08xx-xxxx-xxxx</a></p>
-        </div>
-    </div>
-
-    <script>
-        function switchForm(type, button) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
-            
-            button.classList.add('active');
-            document.getElementById(type + '-form').classList.add('active');
-
-            const vUser = document.getElementById('v_user');
-            const vPass = document.getElementById('v_pass');
-            const mUser = document.getElementById('m_user');
-            const mPass = document.getElementById('m_pass');
-
-            if (type === 'voucher') {
-                vUser.setAttribute('name', 'username');
-                vPass.setAttribute('name', 'password');
-                mUser.removeAttribute('name');
-                mPass.removeAttribute('name');
-            } else {
-                mUser.setAttribute('name', 'username');
-                mPass.setAttribute('name', 'password');
-                vUser.removeAttribute('name');
-                vPass.removeAttribute('name');
-            }
-        }
-    </script>
-</body>
-</html>
