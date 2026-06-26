@@ -48,20 +48,13 @@
         .login-panel::after { right: -2px; background: #ffaa00; box-shadow: 2px 0 10px #ffaa00; }
 
         /* Wadah Logo (Tanpa latar putih, pakai trik CSS Filter agar warna gelap jadi terang) */
-        .logo-box {
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
         .logo-box img {
-            max-width: 100%;
-            height: auto;
-            max-height: 85px;
-            /* Trik CSS: Menaikkan kontras & kecerahan warna biru tua agar menyala di latar gelap */
-            filter: brightness(1.5) contrast(1.2) drop-shadow(0 0 12px rgba(0, 210, 255, 0.6));
-        }
+    width: 90%; /* Mengatur lebar logo agar memenuhi 90% area kotak */
+    max-width: 320px; /* Batas maksimal lebar logo biar gak luber */
+    height: auto;
+    /* Tambahan filter 'brightness' dinaikkan sedikit lagi agar biru tuanya makin nyala menembus background hitam */
+    filter: brightness(1.8) contrast(1.3) drop-shadow(0 0 15px rgba(0, 210, 255, 0.8)); 
+}
 
         /* Tab Switcher (Voucher / Member) */
         .tab-container {
