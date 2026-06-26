@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Beruntung Net Gaming Corner</title>
+    <title>Beruntung Net - Player Login</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
-            /* Background gelap ala gaming dengan sedikit aura biru neon */
-            background: radial-gradient(circle at center, #101f38 0%, #070b12 100%);
+            /* Background gelap pekat khas warnet gaming / cyber cafe */
+            background: radial-gradient(circle at center, #0f1c30 0%, #05080f 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,162 +22,252 @@
             overflow: hidden;
         }
 
-        /* Efek lampu neon samar di latar belakang */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: #0052d4;
-            border-radius: 50%;
-            filter: blur(150px);
-            top: 10%;
-            left: 10%;
-            z-index: 1;
-            opacity: 0.3;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: #ffaa00;
-            border-radius: 50%;
-            filter: blur(150px);
-            bottom: 10%;
-            right: 10%;
-            z-index: 1;
-            opacity: 0.2;
-        }
-
-        .login-card {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 16px;
+        /* Kotak Utama / Panel Login transparan melengkung */
+        .login-panel {
+            background: rgba(10, 17, 30, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 40px 35px;
             width: 100%;
-            max-width: 420px;
+            max-width: 480px;
             text-align: center;
-            z-index: 2;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .logo-container {
-            margin-bottom: 30px;
-        }
-
-        .logo-container img {
-            max-width: 100%;
-            height: auto;
-            max-height: 80px; /* Menyesuaikan proporsi logo memanjang */
-            object-fit: contain;
-        }
-
-        .input-box {
+            /* Border luar tipis dengan sedikit pendaran ganda sesuai gambar */
+            border: 2px solid rgba(0, 162, 255, 0.2);
+            border-radius: 24px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7), 
+                        inset 0 0 15px rgba(0, 162, 255, 0.05);
             position: relative;
-            margin-bottom: 22px;
-            text-align: left;
         }
 
-        .input-box label {
-            display: block;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+        /* Variasi lekukan dekorasi neon di sisi kiri/kanan box biar makin mirip gambar */
+        .login-panel::before, .login-panel::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            height: 60%;
+            width: 3px;
+            border-radius: 10px;
+        }
+        .login-panel::before {
+            left: -2px;
+            background: linear-gradient(to bottom, transparent, #00d2ff, transparent);
+            box-shadow: -2px 0 10px #00d2ff;
+        }
+        .login-panel::after {
+            right: -2px;
+            background: linear-gradient(to bottom, transparent, #ffaa00, transparent);
+            box-shadow: 2px 0 10px #ffaa00;
         }
 
-        .input-box input {
+        /* Wadah Logo Beruntung Net */
+        .logo-box {
+            margin-bottom: 35px;
+        }
+
+        .logo-box img {
+            max-width: 90%;
+            height: auto;
+            object-fit: contain;
+            /* Efek bayangan neon di belakang logo */
+            filter: drop-shadow(0 0 8px rgba(0, 110, 255, 0.5));
+        }
+
+        /* Struktur Baris Input + Ikon */
+        .input-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 12px;
+        }
+
+        .input-field {
+            flex: 1;
+            position: relative;
+        }
+
+        .input-field input {
             width: 100%;
-            padding: 14px 16px;
-            background: #0b1322;
-            border: 1.5px solid #1e293b;
-            border-radius: 8px;
-            color: #fff;
+            padding: 14px 20px;
+            background: rgba(5, 10, 20, 0.8);
+            border-radius: 50px; /* Bentuk lonjong kapsul sesuai gambar */
             font-size: 1rem;
+            color: #ffffff;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
         }
 
-        /* Efek fokus input dapet warna biru dari logo */
-        .input-box input:focus {
-            outline: none;
-            border-color: #0052d4;
-            box-shadow: 0 0 12px rgba(0, 82, 212, 0.4);
+        .input-field input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        /* Tombol ambil gradasi warna kuning/oranye dari logo */
-        .btn-login {
+        /* --- Gaya Spesifik USERNAME (Neon Biru) --- */
+        .username-row input {
+            border: 2px solid #00a2ff;
+            box-shadow: 0 0 10px rgba(0, 162, 255, 0.2);
+        }
+        .username-row input:focus {
+            outline: none;
+            box-shadow: 0 0 18px rgba(0, 162, 255, 0.6);
+            background: rgba(0, 162, 255, 0.05);
+        }
+        .icon-box-blue {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #00a2ff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 8px rgba(0, 162, 255, 0.3);
+        }
+
+        /* --- Gaya Spesifik PASSWORD (Neon Kuning) --- */
+        .password-row input {
+            border: 2px solid #ffaa00;
+            box-shadow: 0 0 10px rgba(255, 170, 0, 0.2);
+        }
+        .password-row input:focus {
+            outline: none;
+            box-shadow: 0 0 18px rgba(255, 170, 0, 0.6);
+            background: rgba(255, 170, 0, 0.05);
+        }
+        .icon-box-yellow {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #ffaa00;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 8px rgba(255, 170, 0, 0.3);
+        }
+
+        /* SVG Ikon Pengganti Gambar Mentah */
+        .icon-box-blue svg, .icon-box-yellow svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* --- Tombol PLAYER LOGIN (Neon Kuning Tebal) --- */
+        .btn-player-login {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(90deg, #fbad18 0%, #ff8800 100%);
-            border: none;
-            border-radius: 8px;
-            color: #070b12;
-            font-size: 1.05rem;
-            font-weight: bold;
+            background: transparent;
+            border: 3px solid #ffaa00;
+            border-radius: 50px;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             cursor: pointer;
-            transition: transform 0.2s style, box-shadow 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(251, 173, 24, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 25px;
+            box-shadow: 0 0 15px rgba(255, 170, 0, 0.3), inset 0 0 10px rgba(255, 170, 0, 0.2);
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(251, 173, 24, 0.5);
+        .btn-player-login:hover {
+            background: #ffaa00;
+            color: #05080f;
+            box-shadow: 0 0 25px rgba(255, 170, 0, 0.8);
+            text-shadow: none;
         }
 
-        .btn-login:active {
-            transform: translateY(0);
+        .btn-player-login svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
         }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 0.85rem;
-            color: #64748b;
+        /* --- Link Bawah (Forgot Password & Create Account) --- */
+        .bottom-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            padding: 0 10px;
         }
 
-        .footer a {
-            color: #fbad18;
+        .link-blue {
+            color: #00a2ff;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.2s;
+            text-shadow: 0 0 5px rgba(0, 162, 255, 0.3);
         }
 
-        .footer a:hover {
-            color: #ff8800;
+        .link-yellow {
+            color: #ffaa00;
+            text-decoration: none;
+            font-weight: 600;
+            text-shadow: 0 0 5px rgba(255, 170, 0, 0.3);
+        }
+
+        .bottom-links a:hover {
             text-decoration: underline;
+            filter: brightness(1.2);
         }
     </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <div class="logo-container">
+    <div class="login-panel">
+        <!-- Panggil gambar logo referensi Anda -->
+        <div class="logo-box">
             <img src="image_f4e23d.jpg" alt="Beruntung Net Gaming Corner">
         </div>
 
         <form action="#" method="POST">
-            <div class="input-box">
-                <label for="username">ID Pengguna / Voucher</label>
-                <input type="text" id="username" name="username" placeholder="Masukkan ID Anda" required autocomplete="off">
+            <!-- Baris Username -->
+            <div class="input-row username-row">
+                <div class="input-field">
+                    <input type="text" name="username" placeholder="Username" required autocomplete="off">
+                </div>
+                <div class="icon-box-blue">
+                    <!-- Ikon User/Player (SVG) -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00a2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
             </div>
 
-            <div class="input-box">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
+            <!-- Baris Password -->
+            <div class="input-row password-row">
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="icon-box-yellow">
+                    <!-- Ikon Gembok/Lock (SVG) -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffaa00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                </div>
             </div>
 
-            <button type="submit" class="btn-login">Start Gaming</button>
+            <!-- Tombol Login ala Power Button Warnet -->
+            <button type="submit" class="btn-player-login">
+                Player Login
+                <!-- Ikon Power (SVG) -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                </svg>
+            </button>
         </form>
 
-        <div class="footer">
-            Butuh billing / voucher? <a href="#">Hubungi Operator</a>
+        <!-- Menu Bawah -->
+        <div class="bottom-links">
+            <a href="#" class="link-blue">Forgot Password?</a>
+            <a href="#" class="link-yellow">Create Account</a>
         </div>
     </div>
 
