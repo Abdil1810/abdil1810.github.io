@@ -12,9 +12,9 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
+        /* Background Utama Tetap Gelap Agar Efek Neon Menyala */
         body {
-            /* Perubahan Background: Gradasi Linear Biru Laut ke Putih Bersih */
-            background: linear-gradient(135deg, #006699 0%, #00a2ff 40%, #ffffff 100%);
+            background: radial-gradient(circle at center, #0f1c30 0%, #05080f 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,18 +22,16 @@
             overflow: hidden;
         }
 
-        /* Panel Utama - Dibuat sedikit gelap transparan agar kontras di latar terang */
+        /* Panel Utama - Diubah Menjadi Gradasi Biru Laut ke Putih */
         .login-panel {
-            background: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: linear-gradient(135deg, #005580 0%, #0099ff 50%, #ffffff 100%);
             padding: 35px 30px;
             width: 100%;
             max-width: 420px;
             text-align: center;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 40, 80, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             position: relative;
         }
 
@@ -45,10 +43,10 @@
             height: 40%;
             width: 3px;
         }
-        .login-panel::before { left: -2px; background: #00d2ff; box-shadow: -2px 0 10px #00d2ff; }
-        .login-panel::after { right: -2px; background: #ffaa00; box-shadow: 2px 0 10px #ffaa00; }
+        .login-panel::before { left: -2px; background: #00d2ff; box-shadow: -2px 0 15px #00d2ff; }
+        .login-panel::after { right: -2px; background: #ffaa00; box-shadow: 2px 0 15px #ffaa00; }
 
-        /* Wadah Logo - Dioptimalkan ukurannya tanpa filter perubah warna */
+        /* Wadah Logo - Transparan & Ukuran Diperbesar */
         .logo-box {
             margin-bottom: 25px;
             display: flex;
@@ -60,17 +58,17 @@
             width: 95%; 
             max-width: 340px; 
             height: auto;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
         }
 
         /* Tab Switcher (Voucher / Member) */
         .tab-container {
             display: flex;
-            background: rgba(5, 10, 20, 0.6);
+            background: rgba(5, 15, 30, 0.7);
             border-radius: 50px;
             margin-bottom: 25px;
             padding: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .tab-btn {
@@ -90,7 +88,7 @@
         .tab-btn.active {
             background: #00a2ff;
             color: #fff;
-            box-shadow: 0 0 12px rgba(0, 162, 255, 0.5);
+            box-shadow: 0 0 12px rgba(0, 162, 255, 0.6);
         }
 
         /* Form & Input */
@@ -109,7 +107,7 @@
         .input-box input {
             width: 100%;
             padding: 14px 20px;
-            background: rgba(5, 10, 20, 0.9);
+            background: rgba(5, 12, 25, 0.95); /* Dipekatkan sedikit agar teks input putih terlihat jelas */
             border-radius: 50px;
             font-size: 1rem;
             color: #fff;
@@ -132,109 +130,7 @@
         .btn-connect {
             width: 100%;
             padding: 14px;
-            background: transparent;
-            border: 3px solid #ffaa00;
+            background: #ffaa00; /* Menggunakan background solid agar kontras dengan bagian bawah form yang putih */
+            border: none;
             border-radius: 50px;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            box-shadow: 0 0 12px rgba(255, 170, 0, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .btn-connect:hover {
-            background: #ffaa00;
-            color: #05080f;
-            box-shadow: 0 0 20px #ffaa00;
-        }
-
-        /* Info Lapak */
-        .net-info {
-            margin-top: 25px;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            line-height: 1.5;
-        }
-
-        .net-info a {
-            color: #ffaa00;
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="login-panel">
-        <!-- Logo Box Tanpa Background (Mengikuti warna aslinya) -->
-        <div class="logo-box">
-            <img src="image_f4e23d-removebg-preview.png" alt="Beruntung Net Logo">
-        </div>
-
-        <!-- Tab Navigasi -->
-        <div class="tab-container">
-            <button class="tab-btn active" onclick="switchForm('voucher', this)">Kode Voucher</button>
-            <button class="tab-btn" onclick="switchForm('member', this)">Member / PPT</button>
-        </div>
-
-        <!-- Form Hotspot -->
-        <form action="#" method="POST">
-            
-            <!-- MODE KODE VOUCHER + SANDI -->
-            <div id="voucher-form" class="form-content active class-voucher">
-                <div class="input-box voucher-form">
-                    <input type="text" id="v_user" name="username" class="v-code" placeholder="MASUKKAN KODE VOUCHER" autocomplete="off">
-                    <input type="password" id="v_pass" name="password" class="v-pass" placeholder="MASUKKAN SANDI VOUCHER"> 
-                </div>
-            </div>
-
-            <!-- MODE MEMBER / BULANAN -->
-            <div id="member-form" class="form-content class-member">
-                <div class="input-box member-form">
-                    <input type="text" id="m_user" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off">
-                    <input type="password" id="m_pass" class="pass-in" placeholder="PASSWORD MEMBER">
-                </div>
-            </div>
-
-            <!-- Tombol Kirim -->
-            <button type="submit" class="btn-connect">Hubungkan Internet</button>
-        </form>
-
-        <!-- Footer Info -->
-        <div class="net-info">
-            <p>Belum punya voucher? Hubungi Admin/Operator</p>
-            <p style="margin-top: 5px;">WA: <a href="https://wa.me/628xxxxxxxxxx" target="_blank">08xx-xxxx-xxxx</a></p>
-        </div>
-    </div>
-
-    <script>
-        function switchForm(type, button) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
-            
-            button.classList.add('active');
-            document.getElementById(type + '-form').classList.add('active');
-
-            const vUser = document.getElementById('v_user');
-            const vPass = document.getElementById('v_pass');
-            const mUser = document.getElementById('m_user');
-            const mPass = document.getElementById('m_pass');
-
-            if (type === 'voucher') {
-                vUser.setAttribute('name', 'username');
-                vPass.setAttribute('name', 'password');
-                mUser.removeAttribute('name');
-                mPass.removeAttribute('name');
-            } else {
-                mUser.setAttribute('name', 'username');
-                mPass.setAttribute('name', 'password');
-                vUser.removeAttribute('name');
-                vPass.removeAttribute('name');
-            }
-        }
-    </script>
-</body>
-</html>
+            color:
