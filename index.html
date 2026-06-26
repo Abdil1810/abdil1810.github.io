@@ -12,6 +12,245 @@
             font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
+        /* Background Utama: Ultra Dark Gaming Vibes */
+        body {
+            background: radial-gradient(circle at center, #0c1524 0%, #03060a 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Panel Utama: Cyber Glassmorphism */
+        .login-panel {
+            background: rgba(6, 11, 20, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            border: 1px solid rgba(0, 162, 255, 0.25);
+            border-radius: 24px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 162, 255, 0.05);
+            position: relative;
+        }
+
+        /* Sudut Aksentuasi Gaming (Cyber Tech Corners) */
+        .login-panel::before, .login-panel::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border-style: solid;
+            pointer-events: none;
+        }
+        .login-panel::before {
+            top: -2px; left: -2px;
+            border-color: #00d2ff transparent transparent #00d2ff;
+            border-width: 3px 0 0 3px;
+            filter: drop-shadow(0 0 5px #00d2ff);
+        }
+        .login-panel::after {
+            bottom: -2px; right: -2px;
+            border-color: transparent #ffaa00 #ffaa00 transparent;
+            border-width: 0 3px 3px 0;
+            filter: drop-shadow(0 0 5px #ffaa00);
+        }
+
+        /* Wadah Logo: Menggunakan trik Backlight Glow agar logo gelap lu kelihatan jelas */
+        .logo-box {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle, rgba(0, 162, 255, 0.25) 0%, transparent 70%); /* Cahaya di belakang logo */
+            padding: 15px 0;
+        }
+        .logo-box img {
+            width: 95%; 
+            max-width: 340px; 
+            height: auto;
+            /* Menaikkan kontras & memberi shadow putih/cyan tipis agar logo terpisah dari background gelap */
+            filter: contrast(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 15px rgba(0, 162, 255, 0.4));
+        }
+
+        /* Tab Switcher: Menu ala Interface Game */
+        .tab-container {
+            display: flex;
+            background: #03070d;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            padding: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(90deg, #0077ff, #00d2ff);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 162, 255, 0.4);
+        }
+
+        /* Form & Input */
+        .form-content {
+            display: none;
+        }
+        .form-content.active {
+            display: block;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 15px 20px;
+            background: #040810;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        /* Input Style: Kotak presisi khas gaming (bukan bulat biasa) */
+        .voucher-form .v-code { border: 1px solid #00a2ff; margin-bottom: 15px; }
+        .voucher-form .v-pass { border: 1px solid #ffaa00; }
+        .voucher-form input:focus { outline: none; border-color: #fff; box-shadow: 0 0 15px currentcolor; }
+
+        .member-form .user-in { border: 1px solid #00a2ff; margin-bottom: 15px; }
+        .member-form .pass-in { border: 1px solid #ffaa00; }
+        .member-form input:focus { outline: none; border-color: #fff; box-shadow: 0 0 15px currentcolor; }
+
+        /* Tombol Connect: Solid Neon Power Button */
+        .btn-connect {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #ff9900, #ffcc00);
+            border: none;
+            border-radius: 12px;
+            color: #03060a;
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-connect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px #ffaa00;
+            filter: brightness(1.1);
+        }
+
+        .btn-connect:active {
+            transform: translateY(0);
+        }
+
+        /* Info Lapak */
+        .net-info {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #52647c;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+
+        .net-info a {
+            color: #ffaa00;
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .net-info a:hover {
+            text-shadow: 0 0 8px #ffaa00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-panel">
+        <div class="logo-box">
+            <img src="image_f4e23d-removebg-preview.png" alt="Beruntung Net Logo">
+        </div>
+
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchForm('voucher', this)">Kode Voucher</button>
+            <button class="tab-btn" onclick="switchForm('member', this)">Member / Bulanan</button>
+        </div>
+
+        <form action="#" method="POST">
+            
+            <div id="voucher-form" class="form-content active class-voucher">
+                <div class="input-box voucher-form">
+                    <input type="text" id="v_user" name="username" class="v-code" placeholder="ENTER VOUCHER CODE" autocomplete="off">
+                    <input type="password" id="v_pass" name="password" class="v-pass" placeholder="ENTER PASSWORD"> 
+                </div>
+            </div>
+
+            <div id="member-form" class="form-content class-member">
+                <div class="input-box member-form">
+                    <input type="text" id="m_user" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off">
+                    <input type="password" id="m_pass" class="pass-in" placeholder="PASSWORD MEMBER">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-connect">Hubungkan Internet</button>
+        </form>
+
+        <div class="net-info">
+            <p>Belum punya voucher? Hubungi Admin/Operator</p>
+            <p style="margin-top: 5px;">WA: <a href="https://wa.me/628xxxxxxxxxx" target="_blank">08xx-xxxx-xxxx</a></p>
+        </div>
+    </div>
+
+    <script>
+        function switchForm(type, button) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
+            
+            button.classList.add('active');
+            document.getElementById(type + '-form').classList.add('active');
+
+            const vUser = document.getElementById('v_user');
+            const vPass = document.getElementById('v_pass');
+            const mUser = document.getElementById('m_user');
+            const mPass = document.getElementById('m_pass');<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beruntung Net - RT/RW Net Hotspot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
         /* Background Utama Tetap Gelap Agar Efek Neon Menyala */
         body {
             background: radial-gradient(circle at center, #0f1c30 0%, #05080f 100%);
