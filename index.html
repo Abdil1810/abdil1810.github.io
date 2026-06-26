@@ -47,17 +47,24 @@
         .login-panel::before { left: -2px; background: #00d2ff; box-shadow: -2px 0 10px #00d2ff; }
         .login-panel::after { right: -2px; background: #ffaa00; box-shadow: 2px 0 10px #ffaa00; }
 
-        /* Wadah Logo */
+        /* Wadah Logo Baru - Diberi base putih agar teks biru tua di logo kelihatan jelas */
         .logo-box {
             margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .logo-box img {
-            max-width: 85%;
+            max-width: 100%;
             height: auto;
-            filter: drop-shadow(0 0 8px rgba(0, 162, 255, 0.5));
+            max-height: 75px;
         }
 
-        /* Tab Switcher (Voucher / Member) khas RT/RW Net */
+        /* Tab Switcher (Voucher / Member) */
         .tab-container {
             display: flex;
             background: rgba(5, 10, 20, 0.6);
@@ -107,16 +114,18 @@
             border-radius: 50px;
             font-size: 1rem;
             color: #fff;
-            text-align: center; /* Teks di tengah biar gampang ngetik voucher */
+            text-align: center;
             letter-spacing: 1px;
             transition: all 0.3s ease;
         }
 
-        /* Warna Border Neon Input */
-        .voucher-form input { border: 2px solid #00a2ff; box-shadow: 0 0 8px rgba(0, 162, 255, 0.2); }
-        .voucher-form input:focus { outline: none; box-shadow: 0 0 15px #00a2ff; }
+        /* Style Input Mode Voucher */
+        .voucher-form .v-code { border: 2px solid #00a2ff; margin-bottom: 15px; }
+        .voucher-form .v-pass { border: 2px solid #ffaa00; }
+        .voucher-form input:focus { outline: none; box-shadow: 0 0 15px currentcolor; }
 
-        .member-form .user-in { border: 2px solid #00a2ff; }
+        /* Style Input Mode Member */
+        .member-form .user-in { border: 2px solid #00a2ff; margin-bottom: 15px; }
         .member-form .pass-in { border: 2px solid #ffaa00; }
         .member-form input:focus { outline: none; box-shadow: 0 0 15px currentcolor; }
 
@@ -143,7 +152,7 @@
             box-shadow: 0 0 20px #ffaa00;
         }
 
-        /* Info Lapak / Cetak Voucher */
+        /* Info Lapak */
         .net-info {
             margin-top: 25px;
             font-size: 0.85rem;
@@ -174,15 +183,15 @@
             
             <div id="voucher-form" class="form-content active class-voucher">
                 <div class="input-box voucher-form">
-                    <input type="text" name="username" placeholder="MASUKKAN KODE VOUCHER" autocomplete="off">
-                    <input type="hidden" name="password" value=""> 
+                    <input type="text" id="v_user" name="username" class="v-code" placeholder="MASUKKAN KODE VOUCHER" autocomplete="off">
+                    <input type="password" id="v_pass" name="password" class="v-pass" placeholder="MASUKKAN SANDI VOUCHER"> 
                 </div>
             </div>
 
             <div id="member-form" class="form-content class-member">
                 <div class="input-box member-form">
-                    <input type="text" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off" style="margin-bottom: 15px;">
-                    <input type="password" class="pass-in" placeholder="PASSWORD">
+                    <input type="text" id="m_user" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off">
+                    <input type="password" id="m_pass" class="pass-in" placeholder="PASSWORD MEMBER">
                 </div>
             </div>
 
@@ -197,14 +206,30 @@
 
     <script>
         function switchForm(type, button) {
-            // Hapus kelas aktif dari semua tab
+            // Pengaturan pergantian tab visual
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            // Sembunyikan semua konten form
             document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
             
-            // Aktifkan tab dan form yang dipilih
             button.classList.add('active');
             document.getElementById(type + '-form').classList.add('active');
+
+            // Logika pengaturan atribut 'name' agar MikroTik membaca input dari tab yang aktif saja
+            const vUser = document.getElementById('v_user');
+            const vPass = document.getElementById('v_pass');
+            const mUser = document.getElementById('m_user');
+            const mPass = document.getElementById('m_pass');
+
+            if (type === 'voucher') {
+                vUser.setAttribute('name', 'username');
+                vPass.setAttribute('name', 'password');
+                mUser.removeAttribute('name');
+                mPass.removeAttribute('name');
+            } else {
+                mUser.setAttribute('name', 'username');
+                mPass.setAttribute('name', 'password');
+                vUser.removeAttribute('name');
+                vPass.removeAttribute('name');
+            }
         }
     </script>
 </body>
