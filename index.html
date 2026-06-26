@@ -34,7 +34,7 @@
             pointer-events: none;
         }
 
-        /* Panel Utama: Border RGB Berjalan Kontinu */
+        /* Panel Utama: Bentuk Meniru Desain Potong Sudut Tombol dengan Garis RGB */
         .login-panel {
             background: rgba(3, 6, 12, 0.95);
             backdrop-filter: blur(25px);
@@ -43,25 +43,37 @@
             width: 100%;
             max-width: 430px;
             text-align: center;
-            border-radius: 4px;
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
             position: relative;
             z-index: 5;
             
-            /* Border RGB Animasi */
-            border: 3px solid transparent;
-            border-image: linear-gradient(var(--angle), #00f2fe, #ff007f, #00ff88, #ffaa00, #00f2fe) 1;
-            animation: 4s rgbRotate linear infinite;
+            /* Skenario Potong Sudut Menyerupai Tombol */
+            clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+            padding: 3px; /* Ketebalan ruang untuk border palsu */
         }
 
-        @property --angle {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
+        /* Container dalam panel agar background gelap tidak tertutup efek RGB */
+        .panel-inner {
+            background: rgba(3, 6, 12, 0.98);
+            width: 100%;
+            height: 100%;
+            padding: 40px 32px;
+            clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
         }
 
-        @keyframes rgbRotate {
-            to { --angle: 360deg; }
+        /* Efek Lampu RGB Berjalan yang Mengikuti Bentuk Potongan */
+        .login-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(#00f2fe, #ff007f, #00ff88, #ffaa00, #00f2fe);
+            animation: rgbShift 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rgbShift {
+            100% { transform: rotate(360deg); }
         }
 
         /* Wadah Logo: Teks Logo Terbaca Sangat Tajam */
@@ -131,12 +143,10 @@
             position: relative;
             margin-bottom: 25px;
             background: linear-gradient(135deg, #091324, #040812);
-            /* Memotong sudut kiri-atas dan kanan-bawah secara asimetris */
             clip-path: polygon(8% 0%, 100% 0%, 100% 70%, 92% 100%, 0% 100%, 0% 30%);
-            padding: 2px; /* Ruang untuk border efek neon */
+            padding: 2px;
         }
 
-        /* Lapisan Neon Border Efek */
         .input-box::before {
             content: '';
             position: absolute;
@@ -146,7 +156,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Ketika input di dalam box sedang di-klik (fokus) */
         .input-box:focus-within::before {
             background: linear-gradient(90deg, #00f2fe, #ff007f);
         }
@@ -164,161 +173,3 @@
             letter-spacing: 3px;
             font-weight: bold;
             text-transform: uppercase;
-            clip-path: polygon(8% 0%, 100% 0%, 100% 70%, 92% 100%, 0% 100%, 0% 30%);
-            outline: none;
-        }
-
-        /* Text Glow efek sewaktu ngetik */
-        .input-box input:focus {
-            color: #ffffff;
-            text-shadow: 0 0 10px #00ffaa, 0 0 20px #00ffaa;
-        }
-
-        .input-box input::placeholder {
-            color: #31465c;
-            letter-spacing: 1.5px;
-            font-size: 0.8rem;
-            text-shadow: none;
-        }
-
-        /* Tag Label Kecil UI Tambahan di Pojok Atas */
-        .input-tag {
-            position: absolute;
-            top: -16px;
-            left: 15px;
-            font-size: 0.6rem;
-            color: #00f2fe;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        /* Tombol Connect: Ultimate Cyber Slash Button */
-        .btn-connect {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #00ff88 0%, #00b3ff 100%);
-            border: none;
-            color: #010307;
-            font-size: 1.2rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            cursor: pointer;
-            clip-path: polygon(0 0, 90% 0, 100% 40%, 100% 100%, 10% 100%, 0 60%);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn-connect:hover {
-            background: linear-gradient(135deg, #ff007f 0%, #ffaa00 100%);
-            color: #fff;
-            letter-spacing: 6px;
-            box-shadow: 0 0 35px rgba(255, 0, 127, 0.6);
-            text-shadow: 0 0 8px #fff;
-        }
-
-        /* Info Lapak / Footer */
-        .net-info {
-            margin-top: 30px;
-            font-size: 0.75rem;
-            color: #435e7a;
-            line-height: 1.8;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .net-info a {
-            color: #ffaa00;
-            text-decoration: none;
-            font-weight: 900;
-            padding: 2px 6px;
-            border: 1px dashed rgba(255, 170, 0, 0.4);
-        }
-        
-        .net-info a:hover {
-            color: #00f2fe;
-            border-color: #00f2fe;
-            text-shadow: 0 0 8px #00f2fe;
-            background: rgba(0, 242, 254, 0.05);
-        }
-    </style>
-</head>
-<body>
-
-    <div class="login-panel">
-        <div class="logo-box">
-            <img src="image_f4e23d-removebg-preview.png" alt="Beruntung Net Logo">
-        </div>
-
-        <div class="tab-container">
-            <button type="button" class="tab-btn active" onclick="switchForm('voucher', this)">SYS.VOUCHER</button>
-            <button type="button" class="tab-btn" onclick="switchForm('member', this)">SYS.MEMBER</button>
-        </div>
-
-        <form action="#" method="POST">
-            
-            <div id="voucher-form" class="form-content active">
-                <div class="input-box">
-                    <span class="input-tag">[ ACCESS CODE ]</span>
-                    <input type="text" id="v_user" name="username" placeholder="// KODE VOUCHER" autocomplete="off" required>
-                </div>
-                <div class="input-box">
-                    <span class="input-tag">[ SECURE PASS ]</span>
-                    <input type="password" id="v_pass" name="password" placeholder="// KATA SANDI (OPT)"> 
-                </div>
-            </div>
-
-            <div id="member-form" class="form-content">
-                <div class="input-box">
-                    <span class="input-tag">[ MEMBER ID ]</span>
-                    <input type="text" id="m_user" placeholder="// USERNAME MEMBER" autocomplete="off">
-                </div>
-                <div class="input-box">
-                    <span class="input-tag">[ KEY PASS ]</span>
-                    <input type="password" id="m_pass" placeholder="// PASSWORD MEMBER">
-                </div>
-            </div>
-
-            <button type="submit" class="btn-connect">CONNECT//NET</button>
-        </form>
-
-        <div class="net-info">
-            ENCRYPTED CONNECTION SYSTEM<br>
-            LAPOR GANGGUAN? <a href="https://wa.me/628xxxxxxxxxx" target="_blank">HUBUNGI OPERATOR</a>
-        </div>
-    </div>
-
-    <script>
-        function switchForm(type, button) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
-
-            const vUser = document.getElementById('v_user');
-            const vPass = document.getElementById('v_pass');
-            const mUser = document.getElementById('m_user');
-            const mPass = document.getElementById('m_pass');
-
-            if (type === 'voucher') {
-                document.getElementById('voucher-form').classList.add('active');
-                vUser.setAttribute('name', 'username');
-                vPass.setAttribute('name', 'password');
-                mUser.removeAttribute('name');
-                mPass.removeAttribute('name');
-                vUser.required = true;
-                mUser.required = false;
-            } else {
-                document.getElementById('member-form').classList.add('active');
-                mUser.setAttribute('name', 'username');
-                mPass.setAttribute('name', 'password');
-                vUser.removeAttribute('name');
-                vPass.removeAttribute('name');
-                mUser.required = true;
-                vUser.required = false;
-            }
-        }
-    </script>
-</body>
-</html>
