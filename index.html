@@ -3,131 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Beruntung Net</title>
+    <title>Login - Beruntung Net Gaming Corner</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            /* Background gelap ala gaming dengan sedikit aura biru neon */
+            background: radial-gradient(circle at center, #101f38 0%, #070b12 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #333;
+            overflow: hidden;
         }
 
-        .login-container {
-            background: #ffffff;
+        /* Efek lampu neon samar di latar belakang */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #0052d4;
+            border-radius: 50%;
+            filter: blur(150px);
+            top: 10%;
+            left: 10%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #ffaa00;
+            border-radius: 50%;
+            filter: blur(150px);
+            bottom: 10%;
+            right: 10%;
+            z-index: 1;
+            opacity: 0.2;
+        }
+
+        .login-card {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
-        .brand-name {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #1e3c72;
-            margin-bottom: 8px;
-        }
-
-        .brand-tagline {
-            font-size: 0.9rem;
-            color: #666;
+        .logo-container {
             margin-bottom: 30px;
         }
 
-        .input-group {
-            margin-bottom: 20px;
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 80px; /* Menyesuaikan proporsi logo memanjang */
+            object-fit: contain;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 22px;
             text-align: left;
         }
 
-        .input-group label {
+        .input-box label {
             display: block;
             font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 6px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-weight: 600;
         }
 
-        .input-group input {
+        .input-box input {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 14px 16px;
+            background: #0b1322;
+            border: 1.5px solid #1e293b;
+            border-radius: 8px;
+            color: #fff;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .input-group input:focus {
+        /* Efek fokus input dapet warna biru dari logo */
+        .input-box input:focus {
             outline: none;
-            border-color: #2a5298;
+            border-color: #0052d4;
+            box-shadow: 0 0 12px rgba(0, 82, 212, 0.4);
         }
 
+        /* Tombol ambil gradasi warna kuning/oranye dari logo */
         .btn-login {
             width: 100%;
-            padding: 12px;
-            background: #1e3c72;
+            padding: 14px;
+            background: linear-gradient(90deg, #fbad18 0%, #ff8800 100%);
             border: none;
-            border-radius: 6px;
-            color: white;
-            font-size: 1rem;
+            border-radius: 8px;
+            color: #070b12;
+            font-size: 1.05rem;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: transform 0.2s style, box-shadow 0.3s ease;
             margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(251, 173, 24, 0.3);
         }
 
         .btn-login:hover {
-            background: #2a5298;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(251, 173, 24, 0.5);
         }
 
-        .footer-text {
-            margin-top: 25px;
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .footer {
+            margin-top: 30px;
             font-size: 0.85rem;
-            color: #777;
+            color: #64748b;
         }
 
-        .footer-text a {
-            color: #1e3c72;
+        .footer a {
+            color: #fbad18;
             text-decoration: none;
             font-weight: 600;
+            transition: color 0.2s;
         }
 
-        .footer-text a:hover {
+        .footer a:hover {
+            color: #ff8800;
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
-        <div class="brand-name">Beruntung Net</div>
-        <div class="brand-tagline">Silakan masuk ke akun Anda</div>
+    <div class="login-card">
+        <div class="logo-container">
+            <img src="image_f4e23d.jpg" alt="Beruntung Net Gaming Corner">
+        </div>
 
         <form action="#" method="POST">
-            <div class="input-group">
-                <label for="username">Username / Email</label>
-                <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+            <div class="input-box">
+                <label for="username">ID Pengguna / Voucher</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan ID Anda" required autocomplete="off">
             </div>
 
-            <div class="input-group">
+            <div class="input-box">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+                <input type="password" id="password" name="password" placeholder="Masukkan Password" required>
             </div>
 
-            <button type="submit" class="btn-login">Masuk</button>
+            <button type="submit" class="btn-login">Start Gaming</button>
         </form>
 
-        <div class="footer-text">
-            Belum punya akun? <a href="#">Hubungi Admin</a>
+        <div class="footer">
+            Butuh billing / voucher? <a href="#">Hubungi Operator</a>
         </div>
     </div>
 
