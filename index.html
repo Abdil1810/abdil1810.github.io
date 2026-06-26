@@ -9,219 +9,262 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Consolas', 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Background Utama: Ultra Dark Gaming Vibes */
+        /* Background Utama: Ultra Dark Gaming Vibes + Scanline Effect */
         body {
-            background: radial-gradient(circle at center, #0c1524 0%, #03060a 100%);
+            background: radial-gradient(circle at center, #0c152a 0%, #020408 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Panel Utama: Cyber Glassmorphism */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 2;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* Panel Utama: Cyber Glassmorphism Tech */
         .login-panel {
-            background: rgba(6, 11, 20, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(5, 10, 20, 0.9);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             padding: 40px 30px;
             width: 100%;
             max-width: 420px;
             text-align: center;
-            border: 1px solid rgba(0, 162, 255, 0.25);
-            border-radius: 24px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 162, 255, 0.05);
+            border: 2px solid #00d2ff;
+            border-radius: 16px;
+            box-shadow: 0 0 50px rgba(0, 210, 255, 0.15), inset 0 0 30px rgba(0, 0, 0, 0.8);
             position: relative;
+            z-index: 5;
         }
 
         /* Sudut Aksentuasi Gaming (Cyber Tech Corners) */
         .login-panel::before, .login-panel::after {
             content: '';
             position: absolute;
-            width: 15px;
-            height: 15px;
+            width: 25px;
+            height: 25px;
             border-style: solid;
             pointer-events: none;
         }
         .login-panel::before {
-            top: -2px; left: -2px;
+            top: -6px; left: -6px;
             border-color: #00d2ff transparent transparent #00d2ff;
-            border-width: 3px 0 0 3px;
-            /* Animasi kelap-kelip lampu neon cyan */
-            animation: neonFlickerCyan 3s infinite alternate;
+            border-width: 4px 0 0 4px;
+            animation: neonFlickerCyan 2.5s infinite alternate;
         }
         .login-panel::after {
-            bottom: -2px; right: -2px;
+            bottom: -6px; right: -6px;
             border-color: transparent #ffaa00 #ffaa00 transparent;
-            border-width: 0 3px 3px 0;
-            /* Animasi kelap-kelip lampu neon oranye */
-            animation: neonFlickerOrange 3.5s infinite alternate;
+            border-width: 0 4px 4px 0;
+            animation: neonFlickerOrange 3s infinite alternate;
         }
 
-        /* Wadah Logo: Efek Backlight Glow yang ikutan kelap-kelip lembut */
+        /* Wadah Logo: Efek Backlight Glow */
         .logo-box {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 15px 0;
-            border-radius: 50%;
+            padding: 10px 0;
             animation: logoGlowPulse 4s infinite ease-in-out;
         }
         .logo-box img {
-            width: 95%; 
-            max-width: 340px; 
+            width: 85%; 
+            max-width: 300px; 
             height: auto;
-            filter: contrast(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+            filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.4));
         }
 
-        /* ANIMASI KELAP-KELIP (CSS KEYFRAMES) */
-        /* 1. Kelap-kelip Neon Samping Cyan */
+        /* ANIMASI KELAP-KELIP & BREATHING EFFECT */
         @keyframes neonFlickerCyan {
             0%, 18%, 22%, 25%, 53%, 57%, 100% {
-                filter: drop-shadow(0 0 8px #00d2ff) drop-shadow(0 0 15px #00d2ff);
+                filter: drop-shadow(0 0 10px #00d2ff) drop-shadow(0 0 20px #00d2ff);
                 opacity: 1;
             }
-            20%, 24%, 55% {
-                filter: none;
-                opacity: 0.7; /* Efek redup instan seperti lampu neon asli agak rusak/gaming */
-            }
+            20%, 24%, 55% { filter: none; opacity: 0.5; }
         }
 
-        /* 2. Kelap-kelip Neon Samping Oranye */
         @keyframes neonFlickerOrange {
             0%, 38%, 42%, 45%, 88%, 92%, 100% {
-                filter: drop-shadow(0 0 8px #ffaa00) drop-shadow(0 0 15px #ffaa00);
+                filter: drop-shadow(0 0 10px #ffaa00) drop-shadow(0 0 20px #ffaa00);
                 opacity: 1;
             }
-            40%, 44%, 90% {
-                filter: none;
-                opacity: 0.6;
-            }
+            40%, 44%, 90% { filter: none; opacity: 0.4; }
         }
 
-        /* 3. Efek Denyut Glow Lampu di Belakang Logo (Breathing Effect) */
         @keyframes logoGlowPulse {
-            0%, 100% {
-                background: radial-gradient(circle, rgba(0, 162, 255, 0.3) 0%, transparent 65%);
-            }
-            50% {
-                background: radial-gradient(circle, rgba(0, 162, 255, 0.1) 0%, transparent 55%);
-            }
+            0%, 100% { background: radial-gradient(circle, rgba(0, 210, 255, 0.25) 0%, transparent 70%); }
+            50% { background: radial-gradient(circle, rgba(0, 210, 255, 0.05) 0%, transparent 50%); }
         }
 
-        /* Tab Switcher (Interface Game) */
+        /* Tab Switcher Interface Game (ROG Style Slash) */
         .tab-container {
             display: flex;
-            background: #03070d;
-            border-radius: 12px;
+            background: #02050a;
+            border-radius: 8px;
             margin-bottom: 25px;
-            padding: 3px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 4px;
+            border: 1px solid rgba(0, 210, 255, 0.2);
         }
 
         .tab-btn {
             flex: 1;
-            padding: 12px;
+            padding: 14px 10px;
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-            font-weight: 800;
+            color: #4a6785;
+            font-size: 0.8rem;
+            font-weight: 900;
             cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.2s ease;
+            border-radius: 6px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .tab-btn.active {
-            background: linear-gradient(90deg, #0077ff, #00d2ff);
+            background: linear-gradient(135deg, #0055cc, #00d2ff);
             color: #fff;
-            box-shadow: 0 0 15px rgba(0, 162, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+            text-shadow: 0 0 5px #fff;
         }
 
-        /* Form & Input */
+        /* Form & Input Mecha-Gaming Style */
         .form-content {
             display: none;
         }
         .form-content.active {
             display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .input-box {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .input-box input {
             width: 100%;
-            padding: 15px 20px;
-            background: #040810;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            color: #fff;
+            padding: 16px 20px;
+            background: #03070e;
+            border: 2px solid #10243d;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #00ffff;
             text-align: center;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
-        .voucher-form .v-code { border: 1px solid #00a2ff; margin-bottom: 15px; }
-        .voucher-form .v-pass { border: 1px solid #ffaa00; }
-        .voucher-form input:focus { outline: none; border-color: #fff; box-shadow: 0 0 15px currentcolor; }
+        /* Placeholder custom color */
+        .input-box input::placeholder {
+            color: #3b526b;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
 
-        .member-form .user-in { border: 1px solid #00a2ff; margin-bottom: 15px; }
-        .member-form .pass-in { border: 1px solid #ffaa00; }
-        .member-form input:focus { outline: none; border-color: #fff; box-shadow: 0 0 15px currentcolor; }
+        /* Targetting states */
+        .class-voucher .v-code:focus { border-color: #00d2ff; box-shadow: 0 0 15px rgba(0, 210, 255, 0.4); outline: none; color: #fff;}
+        .class-voucher .v-pass:focus { border-color: #ffaa00; box-shadow: 0 0 15px rgba(255, 170, 0, 0.4); outline: none; color: #fff;}
+        .class-member .user-in:focus { border-color: #00d2ff; box-shadow: 0 0 15px rgba(0, 210, 255, 0.4); outline: none; color: #fff;}
+        .class-member .pass-in:focus { border-color: #ffaa00; box-shadow: 0 0 15px rgba(255, 170, 0, 0.4); outline: none; color: #fff;}
+
+        /* Label tag kecil di atas input penanda gaming */
+        .input-box::after {
+            content: 'READY';
+            position: absolute;
+            bottom: -7px; right: 15px;
+            font-size: 0.6rem;
+            background: #050a14;
+            padding: 0 6px;
+            color: #3b526b;
+            letter-spacing: 1px;
+            border: 1px solid #10243d;
+        }
 
         /* Tombol Connect: Solid Neon Power Button */
         .btn-connect {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(90deg, #ff9900, #ffcc00);
+            padding: 18px;
+            background: linear-gradient(90deg, #ff8800, #ffbb00);
             border: none;
-            border-radius: 12px;
-            color: #03060a;
-            font-size: 1.1rem;
+            border-radius: 8px;
+            color: #020408;
+            font-size: 1.15rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(255, 136, 0, 0.3);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-connect::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-connect:hover::before {
+            left: 100%;
         }
 
         .btn-connect:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px #ffaa00;
-            filter: brightness(1.1);
+            box-shadow: 0 0 35px #ffaa00;
+            filter: brightness(1.15);
         }
 
         .btn-connect:active {
-            transform: translateY(0);
+            transform: translateY(1px);
         }
 
-        /* Info Lapak */
+        /* Info Lapak / Footer */
         .net-info {
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: #52647c;
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: #4a6785;
             line-height: 1.6;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .net-info a {
             color: #ffaa00;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 900;
+            border-bottom: 1px dashed #ffaa00;
         }
         .net-info a:hover {
-            text-shadow: 0 0 8px #ffaa00;
+            color: #00d2ff;
+            border-bottom-color: #00d2ff;
+            text-shadow: 0 0 8px #00d2ff;
         }
     </style>
 </head>
@@ -233,21 +276,79 @@
         </div>
 
         <div class="tab-container">
-            <button class="tab-btn active" onclick="switchForm('voucher', this)">Kode Voucher</button>
-            <button class="tab-btn" onclick="switchForm('member', this)">Member / Bulanan</button>
+            <button type="button" class="tab-btn active" onclick="switchForm('voucher', this)">[ Voucher ]</button>
+            <button type="button" class="tab-btn" onclick="switchForm('member', this)">[ Member ]</button>
         </div>
 
-        <form action="#" method="POST">
+        <form action="# " method="POST">
             
             <div id="voucher-form" class="form-content active class-voucher">
-                <div class="input-box voucher-form">
-                    <input type="text" id="v_user" name="username" class="v-code" placeholder="ENTER VOUCHER CODE" autocomplete="off">
-                    <input type="password" id="v_pass" name="password" class="v-pass" placeholder="ENTER PASSWORD"> 
+                <div class="input-box">
+                    <input type="text" id="v_user" name="username" class="v-code" placeholder="// KODE VOUCHER" autocomplete="off" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="v_pass" name="password" class="v-pass" placeholder="// PASSWORD (OPSIONAL)"> 
                 </div>
             </div>
 
             <div id="member-form" class="form-content class-member">
-                <div class="input-box member-form">
-                    <input type="text" id="m_user" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off">
-                    <input type="password" id="m_pass" class="pass-in" placeholder="PASSWORD MEMBER">
+                <div class="input-box">
+                    <input type="text" id="m_user" class="user-in" placeholder="// ID MEMBER" autocomplete="off">
                 </div>
+                <div class="input-box">
+                    <input type="password" id="m_pass" class="pass-in" placeholder="// PASSWORD MEMBER">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-connect">Launch Internet</button>
+        </form>
+
+        <div class="net-info">
+            Sistem Amankan & Stabil<br>
+            Butuh Voucher? Hubungi <a href="https://wa.me/628xxxxxxxxxx" target="_blank">Admin Operator</a>
+        </div>
+    </div>
+
+    <script>
+        function switchForm(type, button) {
+            // 1. Reset state tombol tab
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // 2. Sembunyikan semua container form
+            document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
+
+            // 3. Ambil elemen input
+            const vUser = document.getElementById('v_user');
+            const vPass = document.getElementById('v_pass');
+            const mUser = document.getElementById('m_user');
+            const mPass = document.getElementById('m_pass');
+
+            if (type === 'voucher') {
+                document.getElementById('voucher-form').add('active');
+                document.getElementById('voucher-form').classList.add('active');
+                
+                // Set name attribute aktif ke field voucher (Penting untuk MikroTik)
+                vUser.setAttribute('name', 'username');
+                vPass.setAttribute('name', 'password');
+                mUser.removeAttribute('name');
+                mPass.removeAttribute('name');
+                
+                vUser.required = true;
+                mUser.required = false;
+            } else {
+                document.getElementById('member-form').classList.add('active');
+                
+                // Set name attribute aktif ke field member (Penting untuk MikroTik)
+                mUser.setAttribute('name', 'username');
+                mPass.setAttribute('name', 'password');
+                vUser.removeAttribute('name');
+                vPass.removeAttribute('name');
+                
+                mUser.required = true;
+                vUser.required = false;
+            }
+        }
+    </script>
+</body>
+</html>
