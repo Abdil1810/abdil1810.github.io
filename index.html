@@ -13,7 +13,6 @@
         }
 
         body {
-            /* Background gelap pekat khas warnet gaming / cyber cafe */
             background: radial-gradient(circle at center, #0f1c30 0%, #05080f 100%);
             height: 100vh;
             display: flex;
@@ -22,7 +21,7 @@
             overflow: hidden;
         }
 
-        /* Kotak Utama / Panel Login transparan melengkung */
+        /* Kotak Utama / Panel Login Transparan */
         .login-panel {
             background: rgba(10, 17, 30, 0.75);
             backdrop-filter: blur(15px);
@@ -31,7 +30,6 @@
             width: 100%;
             max-width: 480px;
             text-align: center;
-            /* Border luar tipis dengan sedikit pendaran ganda sesuai gambar */
             border: 2px solid rgba(0, 162, 255, 0.2);
             border-radius: 24px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.7), 
@@ -39,12 +37,12 @@
             position: relative;
         }
 
-        /* Variasi lekukan dekorasi neon di sisi kiri/kanan box biar makin mirip gambar */
+        /* Variasi lekukan dekorasi neon di sisi kiri/kanan box */
         .login-panel::before, .login-panel::after {
             content: '';
             position: absolute;
-            top: 20%;
-            height: 60%;
+            top: 25%;
+            height: 50%;
             width: 3px;
             border-radius: 10px;
         }
@@ -59,20 +57,24 @@
             box-shadow: 2px 0 10px #ffaa00;
         }
 
-        /* Wadah Logo Beruntung Net */
-        .logo-box {
+        /* Wadah Tempat Logo (Menyesuaikan gambar referensi lu) */
+        .logo-container {
             margin-bottom: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .logo-box img {
-            max-width: 90%;
+        .logo-container img {
+            max-width: 100%;
             height: auto;
+            max-height: 110px; /* Memastikan logo pas dan tidak kebesaran */
             object-fit: contain;
-            /* Efek bayangan neon di belakang logo */
-            filter: drop-shadow(0 0 8px rgba(0, 110, 255, 0.5));
+            /* Efek pendaran neon biru di sekeliling logo biar menyatu */
+            filter: drop-shadow(0 0 12px rgba(0, 162, 255, 0.6));
         }
 
-        /* Struktur Baris Input + Ikon */
+        /* Struktur Baris Input */
         .input-row {
             display: flex;
             align-items: center;
@@ -82,14 +84,13 @@
 
         .input-field {
             flex: 1;
-            position: relative;
         }
 
         .input-field input {
             width: 100%;
             padding: 14px 20px;
             background: rgba(5, 10, 20, 0.8);
-            border-radius: 50px; /* Bentuk lonjong kapsul sesuai gambar */
+            border-radius: 50px; /* Bentuk lonjong kapsul */
             font-size: 1rem;
             color: #ffffff;
             letter-spacing: 1px;
@@ -103,7 +104,7 @@
             font-weight: 600;
         }
 
-        /* --- Gaya Spesifik USERNAME (Neon Biru) --- */
+        /* Neon Biru untuk Username */
         .username-row input {
             border: 2px solid #00a2ff;
             box-shadow: 0 0 10px rgba(0, 162, 255, 0.2);
@@ -122,9 +123,10 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 8px rgba(0, 162, 255, 0.3);
+            background: rgba(0, 162, 255, 0.05);
         }
 
-        /* --- Gaya Spesifik PASSWORD (Neon Kuning) --- */
+        /* Neon Kuning untuk Password */
         .password-row input {
             border: 2px solid #ffaa00;
             box-shadow: 0 0 10px rgba(255, 170, 0, 0.2);
@@ -143,15 +145,15 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 8px rgba(255, 170, 0, 0.3);
+            background: rgba(255, 170, 0, 0.05);
         }
 
-        /* SVG Ikon Pengganti Gambar Mentah */
         .icon-box-blue svg, .icon-box-yellow svg {
             width: 20px;
             height: 20px;
         }
 
-        /* --- Tombol PLAYER LOGIN (Neon Kuning Tebal) --- */
+        /* Tombol PLAYER LOGIN Neon Kuning Emas */
         .btn-player-login {
             width: 100%;
             padding: 14px;
@@ -187,7 +189,7 @@
             fill: currentColor;
         }
 
-        /* --- Link Bawah (Forgot Password & Create Account) --- */
+        /* Menu Navigasi Bawah */
         .bottom-links {
             margin-top: 25px;
             display: flex;
@@ -219,19 +221,17 @@
 <body>
 
     <div class="login-panel">
-        <!-- Panggil gambar logo referensi Anda -->
-        <div class="logo-box">
-            <img src="image_f4e23d.jpg" alt="Beruntung Net Gaming Corner">
+        
+        <div class="logo-container">
+            <img src="image_f4e23d.jpg" alt="Beruntung Net Logo">
         </div>
 
         <form action="#" method="POST">
-            <!-- Baris Username -->
             <div class="input-row username-row">
                 <div class="input-field">
                     <input type="text" name="username" placeholder="Username" required autocomplete="off">
                 </div>
                 <div class="icon-box-blue">
-                    <!-- Ikon User/Player (SVG) -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="#00a2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
@@ -239,13 +239,11 @@
                 </div>
             </div>
 
-            <!-- Baris Password -->
             <div class="input-row password-row">
                 <div class="input-field">
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="icon-box-yellow">
-                    <!-- Ikon Gembok/Lock (SVG) -->
                     <svg viewBox="0 0 24 24" fill="none" stroke="#ffaa00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
@@ -253,10 +251,8 @@
                 </div>
             </div>
 
-            <!-- Tombol Login ala Power Button Warnet -->
             <button type="submit" class="btn-player-login">
                 Player Login
-                <!-- Ikon Power (SVG) -->
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
                     <line x1="12" y1="2" x2="12" y2="12"></line>
@@ -264,7 +260,6 @@
             </button>
         </form>
 
-        <!-- Menu Bawah -->
         <div class="bottom-links">
             <a href="#" class="link-blue">Forgot Password?</a>
             <a href="#" class="link-yellow">Create Account</a>
