@@ -1,283 +1,310 @@
-import { MapContainer, TileLayer, Circle, Marker, Polyline, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-export default function WifiCoverageMap() {
-  const center = [-3.4875304, 114.9769972];
+<title>Beruntung Net Hotspot</title>
 
-  const core = {
-    name: 'Mikrotik Core',
-    position: [-3.48773, 114.97695],
-  };
+<meta name="theme-color" content="#2563eb">
 
-  const odps = [
-    {
-      id: 'ODP-1',
-      position: [-3.48748, 114.97688],
-      aps: ['AP-1', 'AP-2', 'AP-3'],
-    },
-    {
-      id: 'ODP-2',
-      position: [-3.48772, 114.97702],
-      aps: ['AP-4', 'AP-5', 'AP-6'],
-    },
-    {
-      id: 'ODP-3',
-      position: [-3.48790, 114.97718],
-      aps: ['AP-7', 'AP-8', 'AP-9', 'AP-10'],
-    },
-  ];
-
-  const aps = [
-    // Area pemukiman utara
-    { id: 'AP-1', position: [-3.48740, 114.97667], clients: 10 },
-    { id: 'AP-2', position: [-3.48742, 114.97700], clients: 11 },
-    { id: 'AP-3', position: [-3.48745, 114.97730], clients: 9 },
-
-    // Tengah pemukiman padat
-    { id: 'AP-4', position: [-3.48766, 114.97673], clients: 14 },
-    { id: 'AP-5', position: [-3.48770, 114.97703], clients: 12 },
-    { id: 'AP-6', position: [-3.48772, 114.97734], clients: 10 },
-
-    // Selatan area rumah
-    { id: 'AP-7', position: [-3.48792, 114.97678], clients: 11 },
-    { id: 'AP-8', position: [-3.48796, 114.97710], clients: 13 },
-    { id: 'AP-9', position: [-3.48798, 114.97742], clients: 9 },
-
-    // Timur masih area rumah kecil
-    { id: 'AP-10', position: [-3.48774, 114.97746], clients: 8 },
-  ];
-
-  return (
-    <div className="min-h-screen bg-[#050816] text-white p-5">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="flex items-center justify-between mb-5">
-          <div>
-            <h1 className="text-4xl font-black tracking-tight">
-              RT/RW Net Coverage Map
-            </h1>
-
-            <p className="text-zinc-400 mt-2">
-              Visualisasi real map berdasarkan koordinat area Google Maps.
-            </p>
-          </div>
-
-          <div className="bg-[#0d1326] border border-cyan-500/20 rounded-2xl px-5 py-3">
-            <div className="text-xs text-zinc-400">
-              NETWORK STATUS
-            </div>
-
-            <div className="font-bold text-green-400">
-              ONLINE
-            </div>
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-[1fr_320px] gap-5">
-          <div className="bg-[#0b1020] border border-white/10 rounded-[30px] overflow-hidden shadow-2xl">
-            <MapContainer
-              center={center}
-              zoom={17}
-              style={{ height: '820px', width: '100%' }}
-            >
-              <TileLayer
-                attribution='&copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics'
-                url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-              />
-
-              {/* Backbone CORE → ODP */}
-              {odps.map((odp) => (
-                <Polyline
-                  key={`backbone-${odp.id}`}
-                  positions={[core.position, odp.position]}
-                  pathOptions={{
-                    color: '#ff3b3b',
-                    weight: 5,
-                    opacity: 0.9,
-                  }}
-                />
-              ))}
-
-              {/* ODP Marker */}
-              {odps.map((odp) => (
-                <Marker
-                  key={odp.id}
-                  position={odp.position}
-                >
-                  <Popup>
-                    <div className="space-y-1">
-                      <div className="font-bold text-lg">
-                        {odp.id}
-                      </div>
-
-                      <div>
-                        Distribution Point
-                      </div>
-
-                      <div>
-                        Total AP: {odp.aps.length}
-                      </div>
-                    </div>
-                  </Popup>
-                </Marker>
-              ))}
-
-              {/* Core Router */}
-              <Marker position={core.position}>
-                <Popup>
-                  <div className="font-bold">
-                    Mikrotik Core Router
-                  </div>
-
-                  <div>
-                    Backbone Distribution Center
-                  </div>
-                </Popup>
-              </Marker>
-
-              {/* AP Coverage */}
-              {aps.map((ap) => {
-                const parentODP = odps.find((odp) =>
-                  odp.aps.includes(ap.id)
-                );
-
-                return (
-                  <div key={ap.id}>
-                    {/* Coverage Radius */}
-                    <Circle
-                      center={ap.position}
-                      radius={22}
-                      pathOptions={{
-                        color: '#00d4ff',
-                        fillColor: '#00d4ff',
-                        fillOpacity: 0.15,
-                      }}
-                    />
-
-                    {/* AP Marker */}
-                    <Marker position={ap.position}>
-                      <Popup>
-                        <div className="space-y-1">
-                          <div className="font-bold text-lg">
-                            {ap.id}
-                          </div>
-
-                          <div>
-                            Coverage Radius: 22m
-                          </div>
-
-                          <div>
-                            Connected Houses: {ap.clients}
-                          </div>
-
-                          <div>
-                            Status: Online
-                          </div>
-
-                          <div>
-                            Radius: Fixed 22m
-                          </div>
-                        </div>
-                      </Popup>
-                    </Marker>
-
-                    {/* ODP → AP */}
-                    {parentODP && (
-                      <Polyline
-                        positions={[
-                          parentODP.position,
-                          ap.position,
-                        ]}
-                        pathOptions={{
-                          color: '#ffffff',
-                          dashArray: '6 6',
-                          weight: 3,
-                          opacity: 0.8,
-                        }}
-                      />
-                    )}
-                  </div>
-                );
-              })}
-            </MapContainer>
-          </div>
-
-          <div className="space-y-5">
-            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
-              <div className="text-zinc-400 text-sm">
-                TOTAL ACCESS POINT
-              </div>
-
-              <div className="text-5xl font-black mt-2">
-                10
-              </div>
-            </div>
-
-            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
-              <div className="text-zinc-400 text-sm">
-                TOTAL ESTIMATED CLIENT
-              </div>
-
-              <div className="text-5xl font-black mt-2">
-                109
-              </div>
-            </div>
-
-            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
-              <div className="text-zinc-400 text-sm">
-                AP COVERAGE
-              </div>
-
-              <div className="text-5xl font-black mt-2">
-                22m
-              </div>
-            </div>
-
-            <div className="bg-[#0b1020] border border-white/10 rounded-3xl p-5">
-              <div className="text-lg font-bold mb-4">
-                Topology Notes
-              </div>
-
-              <ul className="space-y-3 text-sm text-zinc-300">
-                <li>
-                  • CORE hanya menarik backbone ke 3 titik ODP.
-                </li>
-
-                <li>
-                  • ODP-1 melayani area utara (AP1–AP3).
-                </li>
-
-                <li>
-                  • ODP-2 melayani area tengah (AP4–AP6).
-                </li>
-
-                <li>
-                  • ODP-3 melayani area selatan & timur (AP7–AP10).
-                </li>
-
-                <li>
-                  • Semua AP memakai radius fixed 22 meter.
-                </li>
-
-                <li>
-                  • Jalur merah = backbone CORE menuju ODP.
-                </li>
-
-                <li>
-                  • Jalur putih = distribusi ODP menuju AP.
-                </li>
-
-                <li>
-                  • Backbone FO lebih hemat dibanding direct topology.
-                </li>
-
-                <li>
-                  • Struktur siap upgrade FTTH kedepannya.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
 }
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(135deg,#2563eb,#0ea5e9,#10b981);
+overflow:hidden;
+position:relative;
+}
+
+body::before{
+content:"";
+position:absolute;
+width:700px;
+height:700px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+top:-250px;
+left:-250px;
+}
+
+body::after{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+background:rgba(255,255,255,.05);
+border-radius:50%;
+bottom:-250px;
+right:-250px;
+}
+
+.login-card{
+position:relative;
+z-index:2;
+width:400px;
+max-width:92%;
+padding:35px;
+border-radius:22px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+border:1px solid rgba(255,255,255,.2);
+color:#fff;
+}
+
+.logo{
+text-align:center;
+margin-bottom:20px;
+}
+
+.logo h1{
+font-size:34px;
+font-weight:800;
+letter-spacing:1px;
+}
+
+.logo span{
+color:#9ef01a;
+}
+
+.logo p{
+margin-top:8px;
+opacity:.9;
+font-size:15px;
+}
+
+.input-group{
+margin-top:18px;
+}
+
+.input-group input{
+width:100%;
+padding:14px 16px;
+border:none;
+outline:none;
+border-radius:12px;
+background:rgba(255,255,255,.18);
+color:#fff;
+font-size:15px;
+}
+
+.input-group input::placeholder{
+color:#eee;
+}
+
+button{
+width:100%;
+margin-top:22px;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#10b981;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#059669;
+transform:translateY(-2px);
+}
+
+.error{
+margin-top:15px;
+text-align:center;
+color:#ffdddd;
+font-size:14px;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
+font-size:13px;
+opacity:.85;
+}
+
+.footer a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+@media(max-width:480px){
+
+.login-card{
+padding:28px;
+}
+
+.logo h1{
+font-size:28px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="login-card">
+
+<div class="logo">
+
+<h1>
+BERUNTUNG
+<span>NET</span>
+</h1>
+
+<p>
+Internet Cepat • Stabil • Terpercaya
+</p>
+
+</div>
+
+<form
+name="login"
+action="$(link-login-only)"
+method="post">
+
+<input
+type="hidden"
+name="dst"
+value="$(link-orig)">
+
+<input
+type="hidden"
+name="popup"
+value="true">
+```
+```html
+<div class="input-group">
+<input
+type="text"
+name="username"
+placeholder="Username"
+value="$(username)"
+required>
+</div>
+
+<div class="input-group">
+<input
+type="password"
+name="password"
+placeholder="Password"
+required>
+</div>
+
+<button type="submit">
+LOGIN KE INTERNET
+</button>
+
+$(if error)
+<div class="error">
+$(error)
+</div>
+$(endif)
+
+</form>
+
+<div class="footer">
+
+<p>
+📶 Powered by <b>Beruntung Net</b>
+</p>
+
+<br>
+
+<p>
+Internet Cepat • Stabil • Terpercaya
+</p>
+
+<br>
+
+<p>
+WhatsApp Admin
+</p>
+
+<p>
+<a href="https://wa.me/6281234567890">
+0812-3456-7890
+</a>
+</p>
+
+</div>
+
+</div>
+
+$(if chap-id)
+
+<form
+name="sendin"
+action="$(link-login-only)"
+method="post"
+style="display:none">
+
+<input
+type="hidden"
+name="username">
+
+<input
+type="hidden"
+name="password">
+
+<input
+type="hidden"
+name="dst"
+value="$(link-orig)">
+
+<input
+type="hidden"
+name="popup"
+value="true">
+
+</form>
+
+<script src="/md5.js"></script>
+
+<script>
+
+document.login.onsubmit=function(){
+
+document.sendin.username.value=
+document.login.username.value;
+
+document.sendin.password.value=
+hexMD5(
+"$(chap-id)"
++
+document.login.password.value
++
+"$(chap-challenge)"
+);
+
+document.sendin.submit();
+
+return false;
+
+};
+
+</script>
+
+$(endif)
+
+</body>
+</html>
+```
