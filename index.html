@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beruntung Net - Player Login</title>
+    <title>Beruntung Net - RT/RW Net Hotspot</title>
     <style>
         * {
             margin: 0;
@@ -21,250 +21,191 @@
             overflow: hidden;
         }
 
-        /* Kotak Utama / Panel Login Transparan */
+        /* Panel Utama */
         .login-panel {
-            background: rgba(10, 17, 30, 0.75);
+            background: rgba(10, 17, 30, 0.8);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 40px 35px;
+            padding: 35px 30px;
             width: 100%;
-            max-width: 480px;
+            max-width: 420px;
             text-align: center;
             border: 2px solid rgba(0, 162, 255, 0.2);
-            border-radius: 24px;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7), 
-                        inset 0 0 15px rgba(0, 162, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
             position: relative;
         }
 
-        /* Variasi lekukan dekorasi neon di sisi kiri/kanan box */
+        /* Dekorasi Neon Samping */
         .login-panel::before, .login-panel::after {
             content: '';
             position: absolute;
-            top: 25%;
-            height: 50%;
+            top: 30%;
+            height: 40%;
             width: 3px;
-            border-radius: 10px;
         }
-        .login-panel::before {
-            left: -2px;
-            background: linear-gradient(to bottom, transparent, #00d2ff, transparent);
-            box-shadow: -2px 0 10px #00d2ff;
-        }
-        .login-panel::after {
-            right: -2px;
-            background: linear-gradient(to bottom, transparent, #ffaa00, transparent);
-            box-shadow: 2px 0 10px #ffaa00;
-        }
+        .login-panel::before { left: -2px; background: #00d2ff; box-shadow: -2px 0 10px #00d2ff; }
+        .login-panel::after { right: -2px; background: #ffaa00; box-shadow: 2px 0 10px #ffaa00; }
 
-        /* Wadah Tempat Logo (Menyesuaikan gambar referensi lu) */
-        .logo-container {
-            margin-bottom: 35px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Wadah Logo */
+        .logo-box {
+            margin-bottom: 25px;
         }
-
-        .logo-container img {
-            max-width: 100%;
+        .logo-box img {
+            max-width: 85%;
             height: auto;
-            max-height: 110px; /* Memastikan logo pas dan tidak kebesaran */
-            object-fit: contain;
-            /* Efek pendaran neon biru di sekeliling logo biar menyatu */
-            filter: drop-shadow(0 0 12px rgba(0, 162, 255, 0.6));
+            filter: drop-shadow(0 0 8px rgba(0, 162, 255, 0.5));
         }
 
-        /* Struktur Baris Input */
-        .input-row {
+        /* Tab Switcher (Voucher / Member) khas RT/RW Net */
+        .tab-container {
             display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            gap: 12px;
+            background: rgba(5, 10, 20, 0.6);
+            border-radius: 50px;
+            margin-bottom: 25px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .input-field {
+        .tab-btn {
             flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
 
-        .input-field input {
+        .tab-btn.active {
+            background: #00a2ff;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(0, 162, 255, 0.5);
+        }
+
+        /* Form & Input */
+        .form-content {
+            display: none;
+        }
+        .form-content.active {
+            display: block;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-box input {
             width: 100%;
             padding: 14px 20px;
-            background: rgba(5, 10, 20, 0.8);
-            border-radius: 50px; /* Bentuk lonjong kapsul */
+            background: rgba(5, 10, 20, 0.9);
+            border-radius: 50px;
             font-size: 1rem;
-            color: #ffffff;
+            color: #fff;
+            text-align: center; /* Teks di tengah biar gampang ngetik voucher */
             letter-spacing: 1px;
             transition: all 0.3s ease;
         }
 
-        .input-field input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+        /* Warna Border Neon Input */
+        .voucher-form input { border: 2px solid #00a2ff; box-shadow: 0 0 8px rgba(0, 162, 255, 0.2); }
+        .voucher-form input:focus { outline: none; box-shadow: 0 0 15px #00a2ff; }
 
-        /* Neon Biru untuk Username */
-        .username-row input {
-            border: 2px solid #00a2ff;
-            box-shadow: 0 0 10px rgba(0, 162, 255, 0.2);
-        }
-        .username-row input:focus {
-            outline: none;
-            box-shadow: 0 0 18px rgba(0, 162, 255, 0.6);
-            background: rgba(0, 162, 255, 0.05);
-        }
-        .icon-box-blue {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #00a2ff;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 8px rgba(0, 162, 255, 0.3);
-            background: rgba(0, 162, 255, 0.05);
-        }
+        .member-form .user-in { border: 2px solid #00a2ff; }
+        .member-form .pass-in { border: 2px solid #ffaa00; }
+        .member-form input:focus { outline: none; box-shadow: 0 0 15px currentcolor; }
 
-        /* Neon Kuning untuk Password */
-        .password-row input {
-            border: 2px solid #ffaa00;
-            box-shadow: 0 0 10px rgba(255, 170, 0, 0.2);
-        }
-        .password-row input:focus {
-            outline: none;
-            box-shadow: 0 0 18px rgba(255, 170, 0, 0.6);
-            background: rgba(255, 170, 0, 0.05);
-        }
-        .icon-box-yellow {
-            width: 45px;
-            height: 45px;
-            border: 2px solid #ffaa00;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 8px rgba(255, 170, 0, 0.3);
-            background: rgba(255, 170, 0, 0.05);
-        }
-
-        .icon-box-blue svg, .icon-box-yellow svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        /* Tombol PLAYER LOGIN Neon Kuning Emas */
-        .btn-player-login {
+        /* Tombol Connect */
+        .btn-connect {
             width: 100%;
             padding: 14px;
             background: transparent;
             border: 3px solid #ffaa00;
             border-radius: 50px;
-            color: #ffffff;
-            font-size: 1.2rem;
+            color: #fff;
+            font-size: 1.1rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 25px;
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.3), inset 0 0 10px rgba(255, 170, 0, 0.2);
+            box-shadow: 0 0 12px rgba(255, 170, 0, 0.3);
             transition: all 0.3s ease;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-        .btn-player-login:hover {
+        .btn-connect:hover {
             background: #ffaa00;
             color: #05080f;
-            box-shadow: 0 0 25px rgba(255, 170, 0, 0.8);
-            text-shadow: none;
+            box-shadow: 0 0 20px #ffaa00;
         }
 
-        .btn-player-login svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-        }
-
-        /* Menu Navigasi Bawah */
-        .bottom-links {
+        /* Info Lapak / Cetak Voucher */
+        .net-info {
             margin-top: 25px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            padding: 0 10px;
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.5;
         }
 
-        .link-blue {
-            color: #00a2ff;
-            text-decoration: none;
-            font-weight: 600;
-            text-shadow: 0 0 5px rgba(0, 162, 255, 0.3);
-        }
-
-        .link-yellow {
+        .net-info a {
             color: #ffaa00;
             text-decoration: none;
             font-weight: 600;
-            text-shadow: 0 0 5px rgba(255, 170, 0, 0.3);
-        }
-
-        .bottom-links a:hover {
-            text-decoration: underline;
-            filter: brightness(1.2);
         }
     </style>
 </head>
 <body>
 
     <div class="login-panel">
-        
-        <div class="logo-container">
+        <div class="logo-box">
             <img src="image_f4e23d.jpg" alt="Beruntung Net Logo">
         </div>
 
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchForm('voucher', this)">Kode Voucher</button>
+            <button class="tab-btn" onclick="switchForm('member', this)">Member / PPT</button>
+        </div>
+
         <form action="#" method="POST">
-            <div class="input-row username-row">
-                <div class="input-field">
-                    <input type="text" name="username" placeholder="Username" required autocomplete="off">
-                </div>
-                <div class="icon-box-blue">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#00a2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
+            
+            <div id="voucher-form" class="form-content active class-voucher">
+                <div class="input-box voucher-form">
+                    <input type="text" name="username" placeholder="MASUKKAN KODE VOUCHER" autocomplete="off">
+                    <input type="hidden" name="password" value=""> 
                 </div>
             </div>
 
-            <div class="input-row password-row">
-                <div class="input-field">
-                    <input type="password" name="password" placeholder="Password" required>
-                </div>
-                <div class="icon-box-yellow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffaa00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
+            <div id="member-form" class="form-content class-member">
+                <div class="input-box member-form">
+                    <input type="text" class="user-in" placeholder="USERNAME MEMBER" autocomplete="off" style="margin-bottom: 15px;">
+                    <input type="password" class="pass-in" placeholder="PASSWORD">
                 </div>
             </div>
 
-            <button type="submit" class="btn-player-login">
-                Player Login
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
-                    <line x1="12" y1="2" x2="12" y2="12"></line>
-                </svg>
-            </button>
+            <button type="submit" class="btn-connect">Hubungkan Internet</button>
         </form>
 
-        <div class="bottom-links">
-            <a href="#" class="link-blue">Forgot Password?</a>
-            <a href="#" class="link-yellow">Create Account</a>
+        <div class="net-info">
+            <p>Belum punya voucher? Hubungi Admin/Operator</p>
+            <p style="margin-top: 5px;">WA: <a href="https://wa.me/628xxxxxxxxxx" target="_blank">08xx-xxxx-xxxx</a></p>
         </div>
     </div>
 
+    <script>
+        function switchForm(type, button) {
+            // Hapus kelas aktif dari semua tab
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Sembunyikan semua konten form
+            document.querySelectorAll('.form-content').forEach(form => form.classList.remove('active'));
+            
+            // Aktifkan tab dan form yang dipilih
+            button.classList.add('active');
+            document.getElementById(type + '-form').classList.add('active');
+        }
+    </script>
 </body>
 </html>
